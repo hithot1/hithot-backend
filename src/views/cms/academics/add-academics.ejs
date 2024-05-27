@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS  </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+           <!-- row -->
+           <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Add Academics & Research</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" placeholder="Enter title..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Sub Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="subTitle" placeholder="Enter sub title..." required>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Academics & Research Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="arBannerImage" type="file" class="custom-file-input" required>
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <label>Recommended Size 1600 * 400 </label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Academics & Research Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="arBannerImageAlt" placeholder="Enter image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Academics & Research Mobile Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="arMobileBannerImage" type="file" class="custom-file-input" required>
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="description" required></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Description Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="descriptionImage" type="file" class="custom-file-input" required>
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <label>Recommended Size 472 * 412 </label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Description Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="descriptionImageAlt" placeholder="Enter image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Courses
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="courses[]" class="form-control select-tag select-tag-courses multi-select" multiple="multiple" required>
+                                                        <% for (let course of courses_data) { %>
+                                                            <option value="<%= course._id%>"><%= course.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">FAQs
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="faqs[]" class="form-control select-tag select-tag-faqs multi-select" multiple="multiple" required>
+                                                        <% for (let faq of faqs_data) { %>
+                                                            <option value="<%= faq._id%>"><%= faq.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hospital Name
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="hospitalName" class="single-select select-post-type d-block" required>
+                                                        <% for (let hospital of hospital_data) { %>
+                                                            <option value="<%= hospital._id%>"><%= hospital.hospitalName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Slug
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" placeholder="Enter slug..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" placeholder="Enter meta title...">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" name="metaDescription"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>               
+                                                
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        
+        $(document).ready(function() {
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/academics/add','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Academics & Research created successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

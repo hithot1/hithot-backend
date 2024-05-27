@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Speciality General</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" placeholder="Enter title..." value="<%= data.title%>" required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                        <input type="hidden" name="_id" value="<%=data._id%>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="bannerImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img src="<%= data.bannerImage%>" class="small_image mt-2 mb-3">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Mobile Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="mobileImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img src="<%= data.mobileImage%>" class="small_image mt-2 mb-3">
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Mobile Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="imageAlt" placeholder="Enter thumbnail alt..." value="<%= data.imageAlt%>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Slug (URL)
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <input type="text" class="form-control" name="slug" placeholder="Enter slug..." value="<%= data.slug%>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control" rows="4" id="comment" name="description" value="<%= data.description%>" required><%=data.description%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <input type="text" class="form-control" name="metaTitle" placeholder="Enter meta title..."  value="<%= data.metaTitle%>">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control" rows="4" id="comment" name="metaDescription" value="<%= data.metaDescription%>"><%=data.metaDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="customize_section-treatment">
+                                                    <% if (data.treatmentGroupData && data.treatmentGroupData.length > 0) {%>
+                                                    <% for (let treatment of data.treatmentGroupData) { %>
+                                                    <div class="form-group row new-gallery previous-treatment-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Why Choose Us Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=treatment.treatmentTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Why Choose Us Icon
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= treatment.treatmentIcon%>" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Why Choose Us Icon Alt
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=treatment.treatmentIconAlt%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Why Choose Us Description
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=treatment.treatmentDescription%>
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_treatment_row" data-id="<%= treatment._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add-row-treatment"> Add </button>
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+                                                        <div class="form-group row new-gallery">
+
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Why Choose Us Title
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="treatmentTitle" placeholder="Enter Why Choose Us title..." required>
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Why Choose Us Icon
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="treatmentIcon" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                        <label>Recommended Size 80 * 80</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Why Choose Us Icon Alt
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="treatmentIconAlt" placeholder="Enter Why Choose Us icon alt..." required>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Why Choose Us Description
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <textarea class="form-control" rows="4" id="comment" name="treatmentDescription"></textarea>
+                                                                </div>
+                                                            </div>
+                                                
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-danger remove-row-treatment" type="button"><i class="fa fa-minus"></i></button>
+                                                            <button class="btn btn-primary add-row-treatment" type="button"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+const appendTreatmentHTML = `
+        <div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Why Choose Us Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="treatmentTitle" placeholder="Enter Why Choose Us title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Why Choose Us Icon
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="treatmentIcon" type="file" class="custom-file-input" required>
+                        <label class="custom-file-label">Choose Image file</label>
+                        <label>Recommended Size 80 * 80</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Why Choose Us Icon Alt
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="treatmentIconAlt" placeholder="Enter Why Choose Us icon alt..." required>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Why Choose Us Description
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <textarea class="form-control" rows="4" id="comment" name="treatmentDescription"></textarea>
+                </div>
+            </div>
+
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove-row-treatment" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add-row-treatment" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+
+        $(document).on('click', '.add-row-treatment', function() {
+            $('.customize_section-treatment').append(appendTreatmentHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove-row-treatment', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        let delete_treatment_rows = [];
+
+        $(document).on('click', '.remove_treatment_row', function() {
+            delete_treatment_rows.push($(this).data('id'));
+            $(this).parents('.previous-treatment-row').remove();
+        });
+        
+        $(document).ready(function() {
+            
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+                formData.append('delete_treatment_rows', delete_treatment_rows);
+
+                const resp = await asyncPost('/cms/speciality/general','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Speciality general updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

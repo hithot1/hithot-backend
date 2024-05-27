@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico"> -->
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Doctor</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Name
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="doctorName" value="<%=data.doctorName%>" placeholder="Enter name..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="doctorImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.doctorImage%>" >
+                                                            <label>Recommended Size 390 * 550 </label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Doctor Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="doctorImageAlt" value="<%=data.doctorImageAlt%>" placeholder="Enter doctor image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Slug URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" value="<%=data.slug%>" placeholder="Enter title..." required>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Doctor Designation
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="doctorDesignation" value="<%=data.doctorDesignation%>" placeholder="Enter designation..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Doctor Qualifications
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="doctorQualifications" value="<%=data.doctorQualifications%>" placeholder="Enter qualifications..." required>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Doctor Experience
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="doctorExperience" value="<%=data.doctorExperience%>" placeholder="Enter experience..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Appointment URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="doctorAppointmentURL" value="<%=data.doctorAppointmentURL%>" placeholder="Enter url..." required>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Doctor Rating
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select name="doctorRating" class="single-select select-post-type d-block select-tag-doctorRating" required>
+                                                            <option value="">Select Doctor Rating</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                    </select>
+                                                        <!-- <input type="number" class="form-control" name="doctorRating" value="<%=data.doctorRating%>" placeholder="Enter doctor rating..." required> -->
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="doctorDescription" value="<%=data.doctorDescription%>" required><%=data.doctorDescription%></textarea>						        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">OPD Timings
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="OPDDescription" value="<%=data.OPDDescription%>" required><%=data.OPDDescription%></textarea>						        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" value="<%=data.metaTitle%>" placeholder="Enter meta title..." required>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" name="metaDescription" value="<%=data.metaDescription%>" required><%=data.metaDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Location
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="doctorLocation" class="single-select select-tag-location select-post-type d-block" required>
+                                                        <% for (let location of location_data) { %>
+                                                            <option value="<%= location._id%>"><%= location.city%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">UHID
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="UHID" value="<%=data.UHID%>" placeholder="Enter UHID..." required>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Cover Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="doctorCoverImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.doctorCoverImage%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Doctor Cover Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="doctorCoverImageAlt" value="<%=data.doctorCoverImageAlt%>" placeholder="Enter doctor cover image alt..." required>
+                                                    </div>
+                                                </div> -->
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Speciality
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="doctorSpeciality[]" id="doctor-speciality" class="form-control select-tag select-tag-speciality multi-select doctor-speciality" multiple="multiple" required>
+                                                        <% for (let speciality of speciality_data) { %>
+                                                            <option value="<%= speciality._id%>"><%= speciality.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Doctor Department
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="doctorDepartment" class="single-select select-tag-department select-post-type d-block" required>
+                                                        <% for (let speciality of speciality_data) { %>
+                                                            <option value="<%= speciality._id%>"><%= speciality.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Doctor Hospital
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="hospitalNames[]" class="form-control select-tag select-tag-hospitalnames multi-select" multiple="multiple" required>
+                                                        <% for (let hospital of hospital_data) { %>
+                                                            <option value="<%= hospital._id%>"><%= hospital.hospitalName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Status
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=true
+                                                                name="checked" id="enable">Enable
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=false
+                                                            name="checked" id="disable">Disable
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>               
+                                                
+                                                <div class="customize_section">
+                                                    <% if (data.aboutDoctor.length > 0) {%>
+                                                    <% let i = 0; for (let doctor of data.aboutDoctor) { %>
+                                                    <div class="form-group row new-gallery">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Doctor About Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <% if (i > 0) {%><input type="text" class="form-control" name="aboutTitle" placeholder="Enter title..." readonly value="<%=doctor.aboutTitle%>" required><% } else{%>
+                                                                    <input type="text" class="form-control" name="aboutTitle" placeholder="Enter title..." value="<%=doctor.aboutTitle%>" required><%}%>
+                                                            </div>
+                                                        </div>
+        
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Hospital About Description
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <% if (i > 0) {%><textarea class="form-control" rows="4" id="comment" name="aboutDescription" readonly value="<%=doctor.aboutDescription%>" required><%=doctor.aboutDescription%></textarea><% } else{%>
+                                                                    <textarea class="form-control summernote" rows="4" id="comment" name="aboutDescription" value="<%=doctor.aboutDescription%>" required><%=doctor.aboutDescription%></textarea><%}%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-2 mt--35">
+                                                            <% if (i > 0) {%><button class="btn btn-danger remove_row" type="button"><i class="fa fa-minus"></i></button></button><% }%>
+                                                            <button class="btn btn-primary add_row" type="button"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% i++; } %>
+                                                    <% } else { %>
+
+                                                        <div class="form-group row new-gallery">
+
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Doctor About Title
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="aboutTitle" placeholder="Enter title..." required>
+                                                                </div>
+                                                            </div>
+            
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Hospital About Description
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <textarea class="form-control summernote" rows="4" id="comment" name="aboutDescription" required></textarea>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-lg-2 mt--35">
+                                                                <button class="btn btn-primary ml--40 add_row" type="button"><i class="fa fa-plus"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    <% } %>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        const appendHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Doctor About Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="aboutTitle" placeholder="Enter title..." required>
+                </div>
+            </div>
+        
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Hospital About Description
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <textarea class="form-control summernote" rows="4" id="comment" name="aboutDescription" required></textarea>
+                </div>
+            </div>
+
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove_row" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add_row" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+
+        $(document).on('click', '.add_row', function() {
+            $('.customize_section').append(appendHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove_row', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+        
+        $(document).ready(function() {
+            
+            $('.select-tag-location').val(<%- JSON.stringify(data.doctorLocation ? data.doctorLocation : "")%>).trigger('change');
+            $('.select-tag-department').val(<%- JSON.stringify(data.doctorDepartment)%>).trigger('change');
+            $('.select-tag-speciality').val(<%- JSON.stringify(data.doctorSpeciality)%>).trigger('change');
+            $('.select-tag-hospitalnames').val(<%- JSON.stringify(data.hospitalNames)%>).trigger('change');
+            $('.select-tag-doctorRating').val(<%- JSON.stringify(data.doctorRating ? data.doctorRating : "")%>).trigger('change');
+            
+            // getSubSpecialityList(<%- JSON.stringify(data.doctorSpeciality)%>)
+
+            let checkbox = <%=data.checked%> 
+            if (checkbox) {
+                document.getElementById("enable").checked = true;
+            } else {
+                document.getElementById("disable").checked = true;
+            }
+
+            $('#enable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("disable").checked = false;
+                }
+            });
+
+            $('#disable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("enable").checked = false;
+                }
+            });
+
+            // $(document).on('change', '.doctor-speciality', async function() {           
+            //     let doctorSpeciality = $(this).val();
+
+            //     getSubSpecialityList(doctorSpeciality);
+            // });
+
+            // async function getSubSpecialityList (speciality) {
+            //     if ($('#subSpeciality')[0].options.length > 0) {
+            //         $('#subSpeciality').children().remove();
+            //     }
+
+            //     console.log(speciality)
+            //     const resp = await asyncGet("/cms/speciality/getSubSpecialityList/"+JSON.stringify(speciality),'',speciality);
+
+            //     console.log(resp.data)
+            //     if (resp.success) {
+
+            //         let subSpeciality=""
+            //         for (let curators of resp.data) { 
+            //             subSpeciality='<option value="'+curators._id+'">'+curators.title+'</option>';
+            //             $('#subSpeciality').append(subSpeciality)
+            //         }
+
+            //         $('.select-tag-sub-speciality').val(<%- JSON.stringify(data.doctorSubSpeciality)%>).trigger('change');
+            //     } else {
+            //         if (resp.message) {
+            //             alert(resp.message);
+            //         } else {
+            //             alert(resp.error);
+            //         }
+            //     }
+            // }
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/doctors/edit','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Doctor updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

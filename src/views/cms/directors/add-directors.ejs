@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.png">
+    <%- include('../styles') -%>
+</head>
+
+<body>
+
+
+    <%- include('../preloader') -%>
+
+        <div id="main-wrapper">
+
+            <%- include('../nav-header') -%>
+
+                <%- include('../header') -%>
+
+                    <%- include('../sidebar') -%>
+
+                        <!--**********************************
+            Content body start
+        ***********************************-->
+                        <div class="content-body">
+                            <!-- row -->
+                            <div class="container-fluid">
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Create Board Of Directors</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-validation">
+                                                    <form class="form-valide" method="post"
+                                                        enctype="multipart/form-data" id="cms_form">
+                                                        <div class="row">
+                                                            <div class="col-xl-12">
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-2 col-form-label">Title
+                                                                        <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <div class="col-lg-4">
+                                                                        <input type="text" class="form-control"
+                                                                            name="heading"
+                                                                            placeholder="Enter name...">
+                                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf"
+                                                                            style="display:none;">
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-2 col-form-label">
+                                                                        Image <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <div class="col-lg-4">
+                                                                        <div class="custom-file">
+                                                                            <input name="bg_image_url" type="file"
+                                                                                class="custom-file-input">
+                                                                            <label class="custom-file-label">Choose
+                                                                                file</label>
+                                                                            <label>Recommended Size 250 * 250 </label>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <label class="col-lg-1 col-form-label">Alt Tag<span
+                                                                            class="text-danger">*</span>
+                                                                    </label>
+                                                                    <div class="col-lg-5">
+                                                                        <input type="text" class="form-control"
+                                                                            name="bg_alt"
+                                                                            placeholder="Enter alt...">
+                                                                    </div>
+                                                                </div>
+
+                                                                                   
+                                                                <div class="form-group row">
+                                                                    <label class="col-lg-2 col-form-label">Designation
+                                                                        <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <div class="col-lg-10">
+                                                                        <textarea name="description" type="text" class="form-control summernote" cols="30" rows="5"></textarea>
+                                                                    </div>
+                                                                </div>
+
+                                                                
+                                                                
+
+
+
+                                                            </div>
+                                                            <div class="col-xl-12">
+                                                                <div class="form-group row">
+                                                                    <div class="col-lg-8 ml-auto">
+                                                                        <button type="button" class="btn btn-primary"
+                                                                            id="submit-form">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--**********************************
+            Content body end
+        ***********************************-->
+
+                        <%- include("../footer") -%>
+
+        </div>
+        <%- include("../scripts") -%>
+
+            <script>
+                $(document).on('click', '#submit-form', async function () {
+                    const is_form_valid = $("#cms_form").valid();
+
+                    if (is_form_valid) {
+                        let formData = new FormData(document.querySelector('#cms_form'));
+                        console.log(formData);
+
+                        const resp = await asyncPost('/cms/directors/add', '', formData);
+
+                        if (resp.success) {
+                            alert('Board Of Directors created successfully');
+                            location.reload();
+                        } else {
+                            if (resp.message) {
+                                alert(resp.message);
+                            } else {
+                                alert(resp.error);
+                            }
+                        }
+                    }
+
+
+                });
+
+
+            </script>
+</body>
+
+</html>

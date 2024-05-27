@@ -1,0 +1,14 @@
+[
+    {
+        "value": "press",
+        "label": "Press Release" 
+    },
+    {
+        "value": "news",
+        "label": "News" 
+    },
+    {
+        "value": "research",
+        "label": "Research" 
+    }
+]

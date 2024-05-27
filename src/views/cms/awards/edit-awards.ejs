@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS  </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Awards</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" value="<%=data[0].title%>" placeholder="Enter title..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                        <input name='_id' value='<%=data[0]._id%>' style="display:none;">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Sub Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="subTitle" value="<%=data[0].subTitle%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Awards Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="awardsBannerImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <label>Recommended Size 1600 * 400</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data[0].awardsBannerImage%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Awards Banner Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="awardsBannerImageAlt" value="<%=data[0].awardsBannerImageAlt%>" placeholder="Enter banner image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Awards Mobile Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="awardsMobileImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <label>Recommended Size 500 * 300</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data[0].awardsMobileImage%>" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Awards Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="awardsDescription" value="<%=data[0].awardsDescription%>" required><%=data[0].awardsDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="customize_section-misc">
+                                                    <% if (data[0].certificatesData && data[0].certificatesData.length > 0) {%>
+                                                    <% for (let certificate of data[0].certificatesData) { %>
+                                                    <div class="form-group row new-gallery previous-misc-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Certificate Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=certificate.certificateTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Partner Icon
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= certificate.certificateImage%>" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_misc_row" data-id="<%= certificate._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add_misc_row"> Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+                                                        <div class="form-group row new-gallery">
+
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Certificate Title
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="certificateTitle" placeholder="Enter title..." required>
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Certificate Image
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="certificateImage" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                        <label>Recommended Size 370 * 260</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-danger remove_row-misc" type="button"><i class="fa fa-minus"></i></button>
+                                                            <button class="btn btn-primary add_misc_row" type="button"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                        </div>
+                                                        <% } %>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Slug URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" value="<%=data[0].slug%>" placeholder="Enter slug..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="customize_section">
+                                                    <% if (data[0].awardsSliderData && data[0].awardsSliderData.length > 0) {%>
+                                                    <% for (let awardsData of data[0].awardsSliderData) { %>
+                                                    <div class="form-group row new-gallery previous-banner-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Slider Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=awardsData.sliderTitle%>
+                                                            </div>
+                                                        </div>
+        
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Slider Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <img class="small_image mt-2 mb-3 image-selected" src="<%= awardsData.sliderImage%>" >
+                                                            </div>
+                                                        </div>
+        
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Slider Description
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=awardsData.sliderDescription%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_banner_row" data-id="<%= awardsData._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add_row"> Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+                                                        <div class="form-group row new-gallery">
+
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Slider Title
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="sliderTitle" placeholder="Enter title..." required>
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Slider Icon
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="sliderImage" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                        <label>Recommended Size 770 * 399</label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Slider Description
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <textarea class="form-control" rows="4" id="comment" name="sliderDescription" required></textarea>
+                                                                </div>
+                                                            </div>
+                                                
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-danger remove_row" type="button"><i class="fa fa-minus"></i></button>
+                                                            <button class="btn btn-primary add_row" type="button"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                        </div>
+                                                    <% } %>
+                                                </div>
+ 
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        const appendHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Slider Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="sliderTitle" placeholder="Enter title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Slider Icon
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="sliderImage" type="file" class="custom-file-input" required>
+                        <label class="custom-file-label">Choose Image file</label>
+                        <label>Recommended Size 770 * 399</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Slider Description
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <textarea class="form-control" rows="4" id="comment" name="sliderDescription" required></textarea>
+                </div>
+            </div>
+
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove_row" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add_row" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+
+        const appendMiscHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Certificate Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="certificateTitle" placeholder="Enter title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Certificate Image
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="certificateImage" type="file" class="custom-file-input" required>
+                        <label class="custom-file-label">Choose Image file</label>
+                        <label>Recommended Size 370 * 260</label>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove_row-misc" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add_misc_row" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+
+        $(document).on('click', '.add_row', function() {
+            $('.customize_section').append(appendHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove_row', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        $(document).on('click', '.add_misc_row', function() {
+            $('.customize_section-misc').append(appendMiscHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove_row-misc', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        let delete_banner_rows = [];
+
+        $(document).on('click', '.remove_banner_row', function() {
+            delete_banner_rows.push($(this).data('id'));
+            $(this).parents('.previous-banner-row').remove();
+        });
+
+        let delete_misc_rows = [];
+
+        $(document).on('click', '.remove_misc_row', function() {
+            delete_misc_rows.push($(this).data('id'));
+            $(this).parents('.previous-misc-row').remove();
+        });
+        
+        $(document).ready(function() {
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+                formData.append('delete_banner_rows', delete_banner_rows);
+                formData.append('delete_misc_rows', delete_misc_rows);
+
+                const resp = await asyncPost('/cms/awards/edit','' ,formData); 
+                
+                if (resp.success) {
+                    alert('Awards updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

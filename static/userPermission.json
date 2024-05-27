@@ -1,0 +1,90 @@
+[
+    {
+        "value": "user",
+        "label": "User" 
+    },
+    {
+        "value": "product",
+        "label": "Product" 
+    },
+    {
+        "value": "slider",
+        "label": "Slider" 
+    },
+    {
+        "value": "banner",
+        "label": "Banner" 
+    },
+    {
+        "value": "brand",
+        "label": "Brand" 
+    },
+    {
+        "value": "blog",
+        "label": "Blog" 
+    },
+    {
+        "value": "recognitions",
+        "label": "Recognitions" 
+    },
+    {
+        "value": "innovations",
+        "label": "Innovations" 
+    },
+    {
+        "value": "mediatvc",
+        "label": "Media TVC" 
+    },
+    {
+        "value": "media",
+        "label": "Media" 
+    },
+    {
+        "value": "dealers",
+        "label": "Dealers" 
+    },
+    {
+        "value": "investorrelation",
+        "label": "Investor Relation" 
+    },
+    {
+        "value": "catalogues",
+        "label": "Catalogues" 
+    },
+    {
+        "value": "contactus",
+        "label": "Contact Us" 
+    },
+    {
+        "value": "faq",
+        "label": "FAQ" 
+    },
+    {
+        "value": "homepage",
+        "label": "Homepage" 
+    },
+    {
+        "value": "bathware",
+        "label": "Bathware" 
+    },
+    {
+        "value": "tiles",
+        "label": "Tiles" 
+    },
+    {
+        "value": "menu",
+        "label": "Menu" 
+    },
+    {
+        "value": "importdata",
+        "label": "Import Data" 
+    },
+    {
+        "value": "keyword",
+        "label": "Keyword" 
+    },
+    {
+        "value": "careers",
+        "label": "Careers" 
+    }
+]

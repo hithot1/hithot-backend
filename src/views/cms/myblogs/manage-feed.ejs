@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-12 p-md-0">
+                        <div class="welcome-text d-flex">
+                            <h4>Manage My Blogs Feed</h4>
+                            <a class="btn btn-primary position-absolute right--0" href="/cms/myblogs/feed/create-category">Create #tag</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Name</th>
+                                                <th>URL</th>
+                                                <th>No. of Posts</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <% if (data && data.length) { 
+                                                    for (let category of data) {    
+                                            %>
+                                            <tr>
+                                                <td><img class="logo-abbr small_image" src="<%= category.ad_banner_image_url%>" alt="<%= category.ad_banner_alt%>"></td>
+                                                <td><%= category.name%></td>
+                                                <td><%= category.ad_banner_external_url%></td>
+                                                <td><%= category.no_of_posts%></td>
+                                                <td><%= moment(category.updated_at).format('DD/MM/YYYY') %></td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="/cms/myblogs/feed/category/<%= category._id%>">Edit</a>
+                                                </td>
+                                            </tr>
+
+                                            <% } } else { %>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        No #Tags Added.
+                                                    </td>
+                                                </tr>
+                                            <% } %>
+                                          
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th></th>
+                                                <th>Name</th>
+                                                <th>URL</th>
+                                                <th>No. of Posts</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+    
+
+</body>
+
+</html>

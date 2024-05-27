@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS  </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Innovations Details Category</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" value="<%=data.title%>" placeholder="Enter title..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+
+
+                                                    <label class="col-lg-2 col-form-label">Size
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="size" value="<%=data.size%>" placeholder="Enter title..." required>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Innovations
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="innovations[]" id="innovations" class="form-control select-tag select-tag-innovations multi-select" multiple="multiple" required>
+                                                        <% for (let innovation of innovations_data) { %>
+                                                            <option value="<%= innovation._id%>"><%= innovation.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Category
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select name="categoryTitle[]" id="slipShieldCategory" class="form-control select-tag select-tag-parentCategory2 multi-select" multiple="multiple" required>
+                                                            <!-- <% for (let slipShieldCategory of parent_categories) {
+                                                                if(data.categoryTitle == slipShieldCategory._id){ %>
+                                                                <option value="<%=slipShieldCategory._id%>"><%=slipShieldCategory.categoryTitle%></option>
+                                                            <% }} %> -->
+                                                           
+                                                            <% for (let slipShieldCategory of parent_categories) { %>
+                                                                <option value="<%=slipShieldCategory._id%>"><%=slipShieldCategory.categoryTitle%></option>
+                                                            <% } %>
+        
+                                                        </select>
+                                                    </div> 
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="image" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <!-- <label>Recommended Size 1600 * 400</label> -->
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%=data.image%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="alt" value="<%=data.alt%>" placeholder="Enter image alt...">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                <label class="col-lg-2 col-form-label">Button Title first
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" name="buttonTitle1" value="<%=data.buttonTitle1%>" placeholder="Enter title..." required>   
+                                                </div>
+
+
+                                                <label class="col-lg-2 col-form-label">Button Link first
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" name="buttonUrl1" value="<%=data.buttonUrl1%>" placeholder="Enter title..." required>
+                                                    
+                                                </div>
+                                                </div>
+
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Button Title second
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="buttonTitle2" value="<%=data.buttonTitle2%>" placeholder="Enter title..." required>   
+                                                    </div>
+    
+    
+                                                    <label class="col-lg-2 col-form-label">Button Link second
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="buttonUrl2" value="<%=data.buttonUrl2%>" placeholder="Enter title..." required>
+                                                        
+                                                    </div>
+                                                    </div>
+
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        $(document).ready(function() {
+            $('.select-tag-parentCategory2').val(<%- JSON.stringify(data.categoryTitle)%>).trigger('change');
+            $('.select-tag-innovations').val(<%- JSON.stringify(data.innovations)%>).trigger('change');
+
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+                // formData.append('delete_banner_rows', delete_banner_rows);
+
+                const resp = await asyncPost('/cms/categoryData/edit','' ,formData); 
+                
+                if (resp.success) {
+                    alert('Innovations Category updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

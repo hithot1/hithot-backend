@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Homepage General</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 1
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title1" value="<%=data.title1%>" placeholder="Enter title..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Short Description 1
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="shortDesc1" value="<%= data.shortDesc1%>" required><%=data.shortDesc1%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 2
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title2" value="<%=data.title2%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Short Description 2
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="shortDesc2" value="<%= data.shortDesc2%>" required><%=data.shortDesc2%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Slug (URL)
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" placeholder="Enter slug..." value="<%= data.slug%>" required>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Video Link
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="videoLink" placeholder="Enter videoLink..." value="<%= data.videoLink%>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Experience Center Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="expCenterTitle" value="<%=data.expCenterTitle%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Experience Center Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="expCenterDesc" value="<%= data.expCenterDesc%>" required><%=data.expCenterDesc%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Experience Center Slider
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select name="expCenterSlider" class="single-select select-tag-slider select-post-type d-block" required>
+                                                            <% for (let slider of slider_data) { %>
+                                                                <option value="<%= slider._id%>"><%= slider.title%></option>
+                                                            <% } %>
+        
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Brand Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="brandTitle" value="<%=data.brandTitle%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Brand Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="brandDesc" value="<%= data.brandDesc%>" required><%=data.brandDesc%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 3
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title3" value="<%=data.title3%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Short Description 3
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="shortDesc3" value="<%= data.shortDesc3%>" required><%=data.shortDesc3%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Bathware Categories
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="bathwareCategories[]" id="bathwareCategories" class="form-control select-tag select-tag-bathwareCategories multi-select" multiple="multiple">
+                                                        <% for (let category of category_data) { %>
+                                                            <option value="<%= category._id%>"><%= category.categoryName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Tiles Categories
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="tilesCategories[]" id="tilesCategories" class="form-control select-tag select-tag-tilesCategories multi-select" multiple="multiple">
+                                                        <% for (let category of category_data) { %>
+                                                            <option value="<%= category._id%>"><%= category.categoryName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">New Launch Categories
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="newLaunchCategories[]" id="newLaunchCategories" class="form-control select-tag select-tag-newLaunchCategories multi-select" multiple="multiple">
+                                                        <% for (let category of category_data) { %>
+                                                            <option value="<%= category._id%>"><%= category.categoryName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" value="<%=data.metaTitle%>" placeholder="Enter title...">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="metaDesc" value="<%= data.metaDesc%>"><%=data.metaDesc%></textarea>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        
+        $(document).ready(function() {
+            $('.select-tag-slider').val(<%- JSON.stringify(data.expCenterSlider ? data.expCenterSlider : "")%>).trigger('change');
+            $('.select-tag-bathwareCategories').val(<%- JSON.stringify(data.bathwareCategories ? data.bathwareCategories : [])%>).trigger('change');
+            $('.select-tag-tilesCategories').val(<%- JSON.stringify(data.tilesCategories ? data.tilesCategories : [])%>).trigger('change');
+            $('.select-tag-newLaunchCategories').val(<%- JSON.stringify(data.newLaunchCategories ? data.newLaunchCategories : [])%>).trigger('change');
+            
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/homepage/general','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Homepage general updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+[
+    {
+        "value": "bathware",
+        "label": "Bathware Collection" 
+    },
+    {
+        "value": "tilesBySpace",
+        "label": "Tiles Collection" 
+    },
+    {
+        "value": "newLaunch",
+        "label": "New Launch" 
+    }
+]

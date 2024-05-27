@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Import Data</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">File Type
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select name="file_type" id="file_type" class="single-select select-post-type d-block" required>
+                                                            <option value="investor">Investor Relations Data</option>
+                                                            <option value="tiles">Tiles Products Data</option>
+                                                            <option value="bathware">Bathware Products Data</option>
+                                                            <option value="dealers">Dealers Data</option>
+                                                        </select>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                    </div>
+
+                                                    <div class="col-lg-4">
+                                                        <button type="button" class="btn btn-primary" id="download-sample-csv" onclick="downloadSampleCSV()">Download Sample CSV</button>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">File
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="exportFile" type="file" class="custom-file-input" accept=".csv">
+                                                            <label class="custom-file-label">Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        
+        $(document).ready(function() {
+            
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/import/add','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Data imported successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });        
+    </script>
+
+    <script>
+        async function downloadSampleCSV() {
+            let file_type = $('#file_type').val();
+            let formdata = new FormData();
+            formdata.append('file_type', file_type)
+            
+            let apiurl = '/api/exportSampleCSV';
+
+            const resp = await asyncPost(apiurl, '', formdata);
+
+            console.log(resp);
+
+            if(resp.success) {
+
+                const link = document.createElement('a');
+                link.href = resp.filePath;
+                link.setAttribute('download', resp.fileName);
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+
+            } else {
+                if (resp.message) {
+                    alert(resp.message);
+                } else {
+                    alert(resp.message);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

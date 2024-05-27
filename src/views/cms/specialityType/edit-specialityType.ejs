@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Speciality Type</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" value="<%=data.title%>" placeholder="Enter title..." required>
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Short Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control" rows="4" id="comment" name="shortDescription" value="<%=data.shortDescription%>" required><%=data.shortDescription%></textarea>
+												        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Long Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="longDescription" value="<%=data.longDescription%>" required><%=data.longDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="bannerImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.bannerImage%>" >
+                                                            <label>Recommended Size 1600 * 400 </label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Banner Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="bannerImageAlt" value="<%=data.bannerImageAlt%>" placeholder="Enter Banner Image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Mobile Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="mobileBannerImage" type="file" class="custom-file-input" >
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.mobileBannerImage%>" >
+                                                            <label>Recommended Size 450 * 600 </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Slug
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" value="<%=data.slug%>" placeholder="Enter slug..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Overview Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="overviewImage" type="file" class="custom-file-input" required>
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.overviewImage%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Overview Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="overviewImageAlt" value="<%=data.overviewImageAlt%>" placeholder="Enter Image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Overview Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control" rows="4" id="comment" name="overviewDescription" value="<%=data.overviewDescription%>" required><%=data.overviewDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Procedures
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="procedures[]" class="form-control select-tag select-tag-procedure multi-select" multiple="multiple" required>
+                                                        <% for (let procedure of procedure_data) { %>
+                                                            <option value="<%= procedure._id%>"><%= procedure.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                    <div class="col-lg-2 col-form-label">
+                                                        <label class="select2-label">
+                                                            Speciality<span class="text-danger">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <select class="single-select select-post-type d-block speciality-name" name="specialityName" required>
+                                                            <% for (let speciality of speciality_data) { %>
+                                                                <option value="<%= speciality._id%>"><%= speciality.title%></option>
+                                                            <% } %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" value="<%=data.metaTitle%>" placeholder="Enter meta title...">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" value="<%=data.metaDescription%>" name="metaDescription"><%=data.metaDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Status
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=true
+                                                                name="checked" id="enable">Enable
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=false
+                                                            name="checked" id="disable">Disable
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div> 
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        
+        $(document).ready(function() {
+
+            $('.select-tag-procedure').val(<%- JSON.stringify(data.procedures)%>).trigger('change');
+            $('.speciality-name').val(<%- JSON.stringify(data.specialityName)%>).trigger('change');
+
+            let checkbox = <%=data.checked%> 
+            if (checkbox) {
+                document.getElementById("enable").checked = true;
+            } else {
+                document.getElementById("disable").checked = true;
+            }
+
+            $('#enable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("disable").checked = false;
+                }
+            });
+
+            $('#disable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("enable").checked = false;
+                }
+            });
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/speciality-type/edit','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Speciality Type updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

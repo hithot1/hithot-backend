@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Attribute Value</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="edit-form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Attribute Group
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select name="attributeId" class="single-select select-post-type d-block select-tag-attribute-group" required>
+                                                            <% for(let attribute of attribute_data){%>
+                                                                <option value='<%=attribute._id%>'><%=attribute.name%></option>
+                                                            <%} %>
+                                                        </select>
+                                                    </div>
+    
+                                                    <label class="col-lg-2 col-form-label">Value
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="value" value="<%=data.value%>" placeholder="Enter value..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Category
+                                                </label>
+                                                <div class="col-lg-4">
+                                                <select name="categorys[]" id="categorys" class="form-control select-tag select-tag-categorys multi-select" multiple="multiple">
+                                                    <option value=""><-- Root category --></option>
+                                                    <% for (let category of categorys) { %>
+                                                        <option value="<%= category._id%>"><%= category.categoryName%></option>
+                                                    <% } %>
+
+                                                </select>
+                                                </div>
+                                            </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="url" value="<%=data.url%>" placeholder="Enter url..." required>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" value="<%=data.metaTitle%>" placeholder="Enter meta title..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Color
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="color" class="form-control" name="favColor" value="<%=data.favColor%>" required>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">
+                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8 ml-auto">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        $(document).ready(function() {
+
+            $('.select-tag-attribute-group').val(<%- JSON.stringify(data.attributeId ? data.attributeId : "")%>).trigger('change');
+            $('.select-tag-categorys').val(<%- JSON.stringify(data.categorys ? data.categorys : "")%>).trigger('change');
+
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                console.log(formData);
+
+                const resp = await asyncPost('/cms/attribute-value-name/edit', '', formData);
+
+                console.log(formData);
+
+                if (resp && resp.success) {
+                    alert('Attribute Value updated successfully');
+                    // window.location.href = window.location.href;
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+
+        });
+
+        
+    </script>
+</body>
+
+</html>

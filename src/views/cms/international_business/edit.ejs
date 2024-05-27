@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.png">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">International Business</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.title%>' name="title" placeholder="Enter title...">
+												        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea name="description" class="form-control summernote" cols="30" rows="5"><%=data.description%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                 <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label"> Enquiry Image <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="image_file1" type="file" class="custom-file-input">
+                                                            <img class="small_image mt-2 mb-3" src="<%= data.image_file1%>" >
+                                                            <label class="custom-file-label">Choose file</label>
+                                                            <label>Recommended Size 629 * 337 </label>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <label class="col-lg-1 col-form-label" >Alt Tag<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" value='<%=data.thumbnail_alt%>' name="thumbnail_alt" placeholder="Enter alt.">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Enquiry  Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="enquiry_title" placeholder="Enter title..." value="<%= data.enquiry_title%>" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Email
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="email" placeholder="Enter email..." value="<%= data.email%>" required>
+                                                    </div>
+                                                </div>
+                                                
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+            console.log("before if");
+
+            if (is_form_valid) {
+            console.log("after if");
+
+                let formData = new FormData(document.querySelector('#cms_form'));
+                const resp = await asyncPost('/cms/international_business/general','' ,formData);               
+            console.log("after post method");
+                
+                if (resp.success) {
+                    alert('International Business Updated Successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

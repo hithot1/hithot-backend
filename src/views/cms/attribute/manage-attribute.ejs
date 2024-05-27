@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-12 p-md-0">
+                        <div class="welcome-text d-flex">
+                            <h4>Manage Attribute</h4>
+                            <a class="btn btn-primary position-absolute right--0" href="/cms/attribute/add">Add</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Manage value</th>
+                                                <th>Category</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <% if (data && data.length) { 
+                                                    for (let attribute of data) {    
+                                            %>
+                                            <tr>
+                                                <td><a href="/cms/attribute-name/edit/<%=attribute._id%>"><%= attribute.name%></a></td>
+                                                <td><a class="btn btn-primary" href="/cms/attribute-name/edit/<%=attribute._id%>">Manage Value</a></td>
+                                                <td><% if(attribute.categorys){ for(let i=0; i < attribute.categorys.length; i++){%><%=attribute.categorys[i].categoryName%>, <% } } %></td>
+                                                <td><%= moment(attribute.updated_at).format('DD/MM/YYYY') %></td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="/cms/attribute/edit/<%= attribute._id%>">Edit</a>
+                                                    <button class="btn btn-danger remove_attribute" data-id="<%= attribute._id%>">Delete</button>
+                                                </td>
+                                            </tr>
+
+                                            <% } } else { %>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        No attribute Added.
+                                                    </td>
+                                                </tr>
+                                            <% } %>
+                                          
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Manage value</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+    
+    <script>
+        $(document).on('click', '.remove_attribute', async function() {
+
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'})
+            .then(async (result) => {
+                if (result.isConfirmed) {
+
+                    const resp = await asyncDelete('/cms/attribute/remove', '/'+id);
+
+                    if (resp && resp.success) {
+                        Swal.fire({icon: "success", text: "Attribute deleted successfully"});
+                        $(this).parents('tr').remove();
+                        // window.location.href = window.location.href;
+                    } else {
+                        if (resp.message) {
+                            alert(resp.message);
+                        } else {
+                            alert(resp.error);
+                        }
+                    }
+                }
+            });
+
+        
+        });
+    </script>
+
+</body>
+
+</html>

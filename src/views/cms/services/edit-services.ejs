@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Service</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="edit-form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" placeholder="Enter title..." value="<%=data.title%>" required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="serviceImage" type="file" class="custom-file-input" value="<%=data.serviceImage%>">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.serviceImage%>" >
+                                                            <label>Recommended Size 59 * 63 </label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="serviceImageAlt" placeholder="Enter image alt..." value="<%=data.serviceImageAlt%>" required>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Short Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" name="description" value="<%=data.description%>" required><%=data.description%></textarea>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">
+                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8 ml-auto">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        $(document).ready(function() {
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                console.log(formData);
+
+                const resp = await asyncPost('/cms/services/edit-services', '', formData);
+
+                console.log(formData);
+
+                if (resp && resp.success) {
+                    alert('Service updated successfully');
+                    // window.location.href = window.location.href;
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+
+        });
+
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-12 p-md-0">
+                        <div class="welcome-text d-flex">
+                            <h4>Manage Bathware Menu</h4>
+                            <!-- <a class="btn btn-primary position-absolute right--0" href="/cms/headers/add">Add</a> -->
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <ul id="sortable">
+                                    <% let tilesBySpacecate = [];
+									
+                                    tilesBySpacecate = data.filter(data => (data.categoryRef.includes('bathware') && data.parentCategory==''));
+                                   %>
+                                    <% if (tilesBySpacecate && tilesBySpacecate.length) { 
+                                        for(let i=0; i < tilesBySpacecate.length; i++){   
+                                %>
+                               
+                                    <li class="ui-state-default" id="<%= tilesBySpacecate[i]._id%>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= tilesBySpacecate[i].categoryName%></li>
+                                    <% let tilesBySpacecate2 = [];
+									
+                                    tilesBySpacecate2 = data.filter(data => (data.parentCategory.includes(tilesBySpacecate[i]._id) ));
+                                   %>
+                                   <% for(let j=0; j < tilesBySpacecate2.length; j++){%>
+                                    <li class="ui-state-default subcat" id="<%= tilesBySpacecate2[j]._id%>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>-<%= tilesBySpacecate2[j].categoryName%></li>
+                                    <% let tilesBySpacecate3 = [];
+									
+									 tilesBySpacecate3 = data.filter(data => (data.parentCategory.includes(tilesBySpacecate2[j]._id) ));
+									%>
+									<% for(let k=0; k < tilesBySpacecate3.length; k++){%>
+                                        <li class="ui-state-default subsubcat" id="<%= tilesBySpacecate3[k]._id%>"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>--<%= tilesBySpacecate3[k].categoryName%></li>
+                                    <% } } } } %>
+                                    <!-- <li class="ui-state-default" id="2"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+                                    <li class="ui-state-default" id="3"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+                                    <li class="ui-state-default" id="4"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+                                    <li class="ui-state-default" id="5"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
+                                    <li class="ui-state-default" id="6"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
+                                    <li class="ui-state-default" id="7"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li> -->
+                                  </ul>
+
+
+                               
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <style>
+    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+    #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em;  }
+    #sortable li span { position: absolute; margin-left: -1.3em; }
+    #sortable .subcat{
+        margin: 0 3px 3px 10px;
+    }
+    #sortable .subsubcat{
+        margin: 0 3px 3px 20px;
+    }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+    // $( function() {
+    //   $( "#sortable" ).sortable();
+    // } );
+    $('#sortable').sortable({
+    axis: 'y',
+    update: function (event, ui) {
+        //var data = $("#sortable").sortable('serialize');
+        var data = $("#sortable").sortable('toArray').toString();
+        console.log(data)
+
+        // POST to server using $.post or $.ajax
+        $.ajax({
+            data: {ids:data},
+            type: 'POST',
+            dataType: "json",
+            url: '/cms/menu/order'
+        });
+    }
+});
+    </script>
+   
+
+</body>
+
+</html>

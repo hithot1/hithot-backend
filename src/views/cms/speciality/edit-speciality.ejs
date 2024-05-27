@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico"> -->
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Speciality</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" value="<%=data.title%>" placeholder="Enter title..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                   
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Overview Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="overviewTitle" value="<%=data.overviewTitle%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">OverviewDescription
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="overviewDescription" value="<%=data.overviewDescription%>" required><%=data.overviewDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Overview Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="overviewImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.overviewImage%>" >
+                                                            <label>Recommended Size 500 * 500 </label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Overview Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="overviewImageAlt" value="<%=data.overviewImageAlt%>" placeholder="Enter thumbnail alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Thumbnail Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="specialityThumbnailImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <label>Recommended Size 300 * 300 </label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.specialityThumbnailImage%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Thumbnail Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="specialityThumbnailImageAlt" value="<%=data.specialityThumbnailImageAlt%>" placeholder="Enter thumbnail alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Speciality Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="specialityBannerImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <label>Recommended Size 1600 * 400 </label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.specialityBannerImage%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Speciality Banner Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="specialityBannerImageAlt" value="<%=data.specialityBannerImageAlt%>" placeholder="Enter banner alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <!-- <div class="customize_section-misc">
+                                                    <% if (data.specialityMiscData.length > 0) { %>
+                                                    <% for (let miscData of data.specialityMiscData) { %>
+                                                    <div class="form-group row new-gallery previous-misc-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Misc Title
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=miscData.miscTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Misc Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                        <img class="small_image mt-2 mb-3 image-selected" src="<%= miscData.miscImage%>" >
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label" >Misc Image Alt<span
+                                                                class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%= miscData.miscImageAlt%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Misc Description
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%= miscData.miscDescription%>
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_misc_row" data-id="<%= miscData._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add_misc_row"> Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+
+                                                        <div class="form-group row new-gallery">
+
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Misc Title
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="miscTitle" placeholder="Enter misc title..." required>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Misc Image
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="miscImage" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label" >Misc Image Alt<span
+                                                                    class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="miscImageAlt" placeholder="Enter banner image alt..." required>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Misc Description
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <textarea class="form-control" rows="4" id="comment" name="miscDescription"></textarea>
+                                                                </div>
+                                                            </div>
+    
+                                                            
+                                                            <div class="col-lg-2 mt--35">
+                                                                <button class="btn btn-primary ml--40 add_row-misc" type="button"><i class="fa fa-plus"></i></button>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                                </div> -->
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hospital Names
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="hospitalNames[]" class="form-control select-tag select-tag-hospitalnames multi-select" multiple="multiple" required>
+                                                        <% for (let hospital of hospital_data) { %>
+                                                            <option value="<%= hospital._id%>"><%= hospital.hospitalName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Slug URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" value="<%=data.slug%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Position
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="number" class="form-control" name="position" value="<%=data.position%>" placeholder="Enter position" required>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">FAQs
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="faqs[]" class="form-control select-tag select-tag-faqs multi-select" multiple="multiple" required>
+                                                        <% for (let faq of faqs_data) { %>
+                                                            <option value="<%= faq._id%>"><%= faq.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" value="<%=data.metaTitle%>" placeholder="Enter meta title...">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" value="<%=data.metaDescription%>" name="metaDescription"><%=data.metaDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Status
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=true
+                                                                name="checked" id="enable">Enable
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=false
+                                                            name="checked" id="disable">Disable
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                </div>        
+                                                
+                                                <!-- <div class="customize_section-technology">
+                                                    <% if (data.specialityTechnologyData.length > 0) { %>
+                                                    <% for (let technologyData of data.specialityTechnologyData) { %>
+                                                    <div class="form-group row new-gallery">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Technology Title
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=technologyData.technologyTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Technology Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= technologyData.technologyImage%>" >
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label" >Technology Image Alt<span
+                                                                class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">                                                                
+                                                                <%=technologyData.technologyImageAlt%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Technology Description
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%= technologyData.technologyDescription%>
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_technology_row" data-id="<%= technologyData._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add_technology_row"> Add</button>
+                                                        </div>
+                                                    </div>
+                                                    <% } else { %>
+                                                        <div class="form-group row new-gallery">
+
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Technology Title
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="technologyTitle" placeholder="Enter technology title..." required>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Technology Image
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="technologyImage" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label" >Technology Image Alt<span
+                                                                    class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="technologyImageAlt" placeholder="Enter image alt..." required>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Technology Description
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <textarea class="form-control" rows="4" id="comment" name="technologyDescription"></textarea>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary add_row-technology" type="button"><i class="fa fa-plus"></i></button>
+                                                            </div>
+                                                            </div>
+                                                    <% } %>
+                                                </div>
+                                                
+                                                <div class="customize_section">
+                                                    <% if (data.specialityGroupBannerData.length > 0) { %>
+                                                    <% for (let speciality of data.specialityGroupBannerData) { %>
+                                                    <div class="form-group row new-gallery previous-banner-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Speciality Banner Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= speciality.specialityBannerImage%>" >
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label" >Speciality Banner Image Alt<span
+                                                                class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=speciality.bannerImageAlt%>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Banner Image Position
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=speciality.bannerImagePosition%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Banner Icon
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= speciality.bannerIcon%>" >
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label" >Banner Icon Alt<span
+                                                                class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=speciality.bannerIconAlt%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Mobile Banner Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                        <img class="small_image mt-2 mb-3 image-selected" src="<%= speciality.mobileBannerImage%>" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_banner_row" data-id="<%= speciality._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add_row"> Add</button>
+                                                        </div>
+                                                    </div>
+
+                                                    <% } else { %>
+
+                                                        <div class="form-group row new-gallery">
+
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Speciality Banner Image
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="specialityBannerImage" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                        <label>Recommended Size 1600 * 400 </label>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label" >Speciality Banner Image Alt<span
+                                                                    class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="bannerImageAlt" placeholder="Enter banner image alt..." required>
+                                                                </div>
+                                                            </div>
+    
+    
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Banner Image Position
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="number" class="form-control" name="bannerImagePosition" placeholder="Enter image position..." required>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Banner Icon
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="bannerIcon" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                        <label>Recommended Size 151 * 167 </label>
+                                                                    </div>
+                                                                </div>
+                                                                </div>
+                                                                <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label" >Banner Icon Alt<span
+                                                                    class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <input type="text" class="form-control" name="bannerIconAlt" placeholder="Enter thumbnail alt..." required>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-lg-4">
+                                                                <label class="col-lg-12 col-form-label">Mobile Banner Image
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-12">
+                                                                    <div class="custom-file">
+                                                                        <input name="mobileBannerImage" type="file" class="custom-file-input" required>
+                                                                        <label class="custom-file-label">Choose Image file</label>
+                                                                        <label>Recommended Size 450 * 600 </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-lg-2 mt--35">
+                                                                <button class="btn btn-primary ml--40 add_row" type="button"><i class="fa fa-plus"></i></button>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                                </div> -->
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        // const appendHTML = `<div class="form-group row new-gallery">
+
+        // <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label">Speciality Banner Image
+        //         <span class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <div class="custom-file">
+        //             <input name="specialityBannerImage" type="file" class="custom-file-input" required>
+        //             <label class="custom-file-label">Choose Image file</label>
+        //         </div>
+        //     </div>
+        //     </div>
+        //     <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label" >Speciality Banner Image Alt<span
+        //         class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <input type="text" class="form-control" name="bannerImageAlt" placeholder="Enter banner image alt..." required>
+        //     </div>
+        // </div>
+
+        // <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label">Banner Image Position
+        //         <span class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <input type="number" class="form-control" name="bannerImagePosition" placeholder="Enter image position..." required>
+        //     </div>
+        // </div>
+
+        // <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label">Banner Icon
+        //         <span class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <div class="custom-file">
+        //             <input name="bannerIcon" type="file" class="custom-file-input" required>
+        //             <label class="custom-file-label">Choose Image file</label>
+        //         </div>
+        //     </div>
+        //     </div>
+        //     <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label" >Banner Icon Alt<span
+        //         class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <input type="text" class="form-control" name="bannerIconAlt" placeholder="Enter thumbnail alt..." required>
+        //     </div>
+        // </div>
+
+        // <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label">Mobile Banner Image
+        //         <span class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <div class="custom-file">
+        //             <input name="mobileBannerImage" type="file" class="custom-file-input" required>
+        //             <label class="custom-file-label">Choose Image file</label>
+        //         </div>
+        //     </div>
+        // </div>
+
+        // <div class="col-lg-2 mt--35">
+        //     <button class="btn btn-danger remove_row" type="button"><i class="fa fa-minus"></i></button>
+        //     <button class="btn btn-primary add_row" type="button"><i class="fa fa-plus"></i></button>
+        // </div>
+        // </div>`;
+
+        // const appendMiscHTML = `<div class="form-group row new-gallery">
+
+        //     <div class="col-lg-4">
+        //         <label class="col-lg-12 col-form-label">Misc Title
+        //         </label>
+        //         <div class="col-lg-12">
+        //             <input type="text" class="form-control" name="miscTitle" placeholder="Enter misc title..." required>
+        //         </div>
+        //     </div>
+
+        //     <div class="col-lg-4">
+        //         <label class="col-lg-12 col-form-label">Misc Image
+        //             <span class="text-danger">*</span>
+        //         </label>
+        //         <div class="col-lg-12">
+        //             <div class="custom-file">
+        //                 <input name="miscImage" type="file" class="custom-file-input" required>
+        //                 <label class="custom-file-label">Choose Image file</label>
+        //             </div>
+        //         </div>
+        //         </div>
+        //         <div class="col-lg-4">
+        //         <label class="col-lg-12 col-form-label" >Misc Image Alt<span
+        //             class="text-danger">*</span>
+        //         </label>
+        //         <div class="col-lg-12">
+        //             <input type="text" class="form-control" name="miscImageAlt" placeholder="Enter banner image alt..." required>
+        //         </div>
+        //     </div>
+
+        //     <div class="col-lg-4">
+        //         <label class="col-lg-12 col-form-label">Misc Description
+        //         </label>
+        //         <div class="col-lg-12">
+        //             <textarea class="form-control" rows="4" id="comment" name="miscDescription"></textarea>
+        //         </div>
+        //     </div>
+
+        // <div class="col-lg-2 mt--35">
+        //     <button class="btn btn-danger remove_row-misc" type="button"><i class="fa fa-minus"></i></button>
+        //     <button class="btn btn-primary add_misc_row" type="button"><i class="fa fa-plus"></i></button>
+        // </div>
+        // </div>`;
+
+        // const appendTechnologyHTML = `<div class="form-group row new-gallery">
+
+        // <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label">Technology Title
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <input type="text" class="form-control" name="technologyTitle" placeholder="Enter technology title..." required>
+        //     </div>
+        // </div>
+
+        // <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label">Technology Image
+        //         <span class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <div class="custom-file">
+        //             <input name="technologyImage" type="file" class="custom-file-input" required>
+        //             <label class="custom-file-label">Choose Image file</label>
+        //         </div>
+        //     </div>
+        //     </div>
+        //     <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label" >Technology Image Alt<span
+        //         class="text-danger">*</span>
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <input type="text" class="form-control" name="technologyImageAlt" placeholder="Enter image alt..." required>
+        //     </div>
+        // </div>
+
+        // <div class="col-lg-4">
+        //     <label class="col-lg-12 col-form-label">Technology Description
+        //     </label>
+        //     <div class="col-lg-12">
+        //         <textarea class="form-control" rows="4" id="comment" name="technologyDescription"></textarea>
+        //     </div>
+        // </div>
+
+        // <div class="col-lg-2 mt--35">
+        // <button class="btn btn-danger remove_row-technology" type="button"><i class="fa fa-minus"></i></button>
+        // <button class="btn btn-primary add_row-technology" type="button"><i class="fa fa-plus"></i></button>
+        // </div>
+        // </div>`;
+
+        // $(document).on('click', '.add_row', function() {
+        //     $('.customize_section').append(appendHTML);
+        //     $('.summernote').summernote({
+        //         height: 150,
+        //         minHeight: null,
+        //         maxHeight: null,
+        //         focus: !1
+        //     });
+        // });
+
+        // $(document).on('click', '.remove_row', function() {
+        //     $(this).parents('.new-gallery').remove();
+        // });
+
+        // $(document).on('click', '.add_misc_row', function() {
+        //     $('.customize_section-misc').append(appendMiscHTML);
+        //     $('.summernote').summernote({
+        //         height: 150,
+        //         minHeight: null,
+        //         maxHeight: null,
+        //         focus: !1
+        //     });
+        // });
+
+        // $(document).on('click', '.remove_row-misc', function() {
+        //     $(this).parents('.new-gallery').remove();
+        // });
+
+        // $(document).on('click', '.add_technology_row', function() {
+        //     $('.customize_section-technology').append(appendTechnologyHTML);
+        //     $('.summernote').summernote({
+        //         height: 150,
+        //         minHeight: null,
+        //         maxHeight: null,
+        //         focus: !1
+        //     });
+        // });
+
+        // $(document).on('click', '.remove_row-technology', function() {
+        //     $(this).parents('.new-gallery').remove();
+        // });
+
+        // let delete_banner_rows = [];
+
+        // $(document).on('click', '.remove_banner_row', function() {
+        //     delete_banner_rows.push($(this).data('id'));
+        //     $(this).parents('.previous-banner-row').remove();
+        // });
+
+        // let delete_misc_rows = [];
+
+        // $(document).on('click', '.remove_misc_row', function() {
+        //     delete_misc_rows.push($(this).data('id'));
+        //     $(this).parents('.previous-misc-row').remove();
+        // });
+
+        // let delete_technology_rows = [];
+
+        // $(document).on('click', '.remove_technology_row', function() {
+        //     delete_technology_rows.push($(this).data('id'));
+        //     $(this).parents('.previous-technology-row').remove();
+        // });
+        
+        $(document).ready(function() {
+            // $('.select-tag-disease').val(<%- JSON.stringify(data.diseases)%>).trigger('change');
+            $('.select-tag-hospitalnames').val(<%- JSON.stringify(data.hospitalNames)%>).trigger('change');
+            $('.select-tag-faqs').val(<%- JSON.stringify(data.faqs)%>).trigger('change');
+
+            let checkbox = <%=data.checked%> 
+            if (checkbox) {
+                document.getElementById("enable").checked = true;
+            } else {
+                document.getElementById("disable").checked = true;
+            }
+
+            $('#enable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("disable").checked = false;
+                }
+            });
+
+            $('#disable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("enable").checked = false;
+                }
+            });
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+                // formData.append('delete_banner_rows', delete_banner_rows);
+                // formData.append('delete_misc_rows', delete_misc_rows);
+                // formData.append('delete_technology_rows', delete_technology_rows);
+
+                const resp = await asyncPost('/cms/speciality/edit','' ,formData);    
+                
+                if (resp.success) {
+                    alert('Speciality edited successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

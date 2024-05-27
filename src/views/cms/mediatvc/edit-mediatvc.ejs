@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Media Tvc</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="edit-form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" placeholder="Enter title..." value="<%=data.title%>" required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Status
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control input-height" name="status">
+                                                            <option value="<%=data.status%>"><%=data.status%></option>
+                                                            <option value="Enable">Enabled</option>
+                                                            <option value="Disabled">Disabled
+                                                            </option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Store
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control input-height" name="store" id="store">
+                                                            <option value="">Select Store</option>
+                                                            <% for(let i=0; i < mediastore.length; i++){%>
+                                                                <option value="<%=mediastore[i].value%>"><%=mediastore[i].key%></option>
+                                                                <% } %>
+
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Media Year
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control input-height" id="financial_year" name="financial_year">
+                                                            <option value="">Select Year</option>
+                                                            <% for(let i=0; i < years.length; i++){%>
+                                                                <option value="<%=years[i].value%>"><%=years[i].key%></option>
+                                                                <% } %>
+        
+                                                        </select>
+        
+                                                    </div>
+
+                                                    </div>
+                                                
+                                                </div>
+
+
+                                                <label class="col-lg-2 col-form-label">Type
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                    <select class="form-control input-height" onchange="change()"
+                                                        name="typeOfMedia" id="typeOfMedia">
+                                                        <option value="">Select Type</option>
+                                                        <%for(let i=0; i< typeOfMedia.length; i++){%>
+                                                            <%if(typeOfMedia[i].key != data.typeOfMedia){%>
+                                                        <option value="<%-typeOfMedia[i].value%>"><%-typeOfMedia[i].key%></option>
+                                                        <%}}%>
+                                                   
+
+                                                    </select>
+    
+                                                </div>
+                                            <div id="storeprint" style="display:none; margin-left: 13px;" class="row mt-5" >
+                                                <label class="col-lg-2 col-form-label">Preview Image
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                              
+                                                <div class="col-lg-4">
+                                                    <div class="custom-file">
+                                                        <input name="previewimage" type="file" class="custom-file-input"
+                                                            value="">
+                                                        <label class="custom-file-label">Choose file</label>
+                                                        <img class="small_image mt-2 mb-3 image-selected" src="<%-data.previewimage%>">
+    
+                                                </div>
+    
+                                                </div>
+                                                <label class="col-lg-2 col-form-label">Pdf
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                    <input name="previewpdf" type="file" class="custom-file-input"
+                                                    value="">
+                                                <label class="custom-file-label">Choose file</label>
+                                                <img class="small_image mt-2 mb-3 image-selected" src="<%-data.previewpdf%>">
+    
+                                                </div>
+                                               
+                                             </div>
+    
+                                             <div class="row mt-5" id="storetype" style="display: none; margin-left: 13px;">
+                                                <label class="col-lg-2 col-form-label">YouTube URL
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                    <input type="text" class="form-control" name="youtubeurl"
+                                                        placeholder="Enter URL..." value="<%-data.youtubeurl%>" required>
+                                                    
+                                                </div>
+                                                <label class="col-lg-2 col-form-label">Youtube Image
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                    <div class="custom-file">
+                                                        <input name="youtubeimage" type="file" class="custom-file-input" >
+                                                        <label class="custom-file-label">Choose Image file</label>
+                                                        <label>Recommended Size 370 * 250 </label>
+                                                        <img class="small_image mt-2 mb-3 image-selected" src="<%-data.youtubeimage%>">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+    
+                                               
+                                            <div class="col-xl-12">
+                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8 ml-auto">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        function change() {
+            let store = $('#store').val()
+            
+            if (store == "Print") {
+                $('#storeprint').show()
+                $("#storetype").hide()
+
+            }else if(store == ""){
+                $('#storeprint').hide()
+                $("#storetype").hide()
+
+            }else{
+                $('#storeprint').hide()
+                $("#storetype").show()
+            }
+            // alert(store)
+            // console.log("readmore", store);
+        }
+
+
+        $(document).ready(function() {
+
+            let store = $('#store').val()
+            
+            if (store == "Print") {
+                $('#storeprint').show()
+                $("#storetype").hide()
+
+            }else if(store == ""){
+                $('#storeprint').hide()
+                $("#storetype").hide()
+
+            }else{
+                $('#storeprint').hide()
+                $("#storetype").show()
+            }
+
+        });
+        $(document).ready(function() {
+            $('#store').val('<%= data.store%>').trigger('change');
+            $('#financial_year').val('<%= data.financial_year%>').trigger('change');
+            $('#typeOfMedia').val('<%= data.typeOfMedia%>').trigger('change');
+
+            
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+            
+
+            if (is_form_valid) {
+                console.log("test")
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                console.log(formData);
+
+                const resp = await asyncPost('/cms/mediatvc/edit', '', formData);
+
+                console.log(formData);
+
+                if (resp && resp.success) {
+                    alert('Media Tvc updated successfully');
+                    // window.location.href = window.location.href;
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+
+        });
+
+        
+    </script>
+</body>
+
+</html>

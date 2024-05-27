@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Bathware General</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Bathware Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="bathwareTitle" value="<%=data.bathwareTitle%>" placeholder="Enter bathware title..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Bathware Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="bathwareDescription" value="<%= data.bathwareDescription%>" ><%=data.bathwareDescription%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">New Launch Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="newLaunchTitle" value="<%=data.newLaunchTitle%>" placeholder="Enter title..." >
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">New Launch Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="newLaunchDescription" value="<%= data.newLaunchDescription%>" ><%=data.newLaunchDescription%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 2
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title2" value="<%=data.title2%>" placeholder="Enter title..." >
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Description 2
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="description2" value="<%= data.description2%>" ><%=data.description2%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 3
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title3" value="<%=data.title3%>" placeholder="Enter title..." >
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Description 3
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="description3" value="<%= data.description3%>" ><%=data.description3%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Slug (URL)
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" placeholder="Enter slug..." value="<%= data.slug%>" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Slider
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select name="slider" class="single-select select-tag-slider select-post-type d-block" >
+                                                            <% for (let slider of slider_data) { %>
+                                                                <option value="<%= slider._id%>"><%= slider.title%></option>
+                                                            <% } %>
+        
+                                                        </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">FAQs
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="faqs[]" id="faqs" class="form-control select-tag select-tag-faqs multi-select doctor-faqs" multiple="multiple" >
+                                                        <% for (let faq of faq_data) { %>
+                                                            <option value="<%= faq._id%>"><%= faq.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Bathware Categories
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="bathwareCategories[]" id="bathwareCategories" class="form-control select-tag select-tag-bathwareCategories multi-select" multiple="multiple">
+                                                        <% for (let category of category_data) { %>
+                                                            <option value="<%= category._id%>"><%= category.categoryName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">New Launch Categories
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="newLaunchCategories[]" id="newLaunchCategories" class="form-control select-tag select-tag-newLaunchCategories multi-select" multiple="multiple">
+                                                        <% for (let category of category_data) { %>
+                                                            <option value="<%= category._id%>"><%= category.categoryName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" value="<%=data.metaTitle%>" placeholder="Enter title...">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="metaDesc" value="<%= data.metaDesc%>"><%=data.metaDesc%></textarea>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        
+        $(document).ready(function() {
+            $('.select-tag-slider').val(<%- JSON.stringify(data.slider ? data.slider : "")%>).trigger('change');
+            $('.select-tag-faqs').val(<%- JSON.stringify(data.faqs ? data.faqs : [])%>).trigger('change');
+            $('.select-tag-bathwareCategories').val(<%- JSON.stringify(data.bathwareCategories ? data.bathwareCategories : [])%>).trigger('change');
+            $('.select-tag-newLaunchCategories').val(<%- JSON.stringify(data.newLaunchCategories ? data.newLaunchCategories : [])%>).trigger('change');
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/bathware/general','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Bathware general updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

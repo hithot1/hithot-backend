@@ -1,0 +1,634 @@
+<div class="quixnav">
+    <div class="quixnav-scroll">
+        <ul class="metismenu" id="menu">
+            <li class="nav-label first">Main Menu</li> 
+           
+            
+                <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('user'))){%> 
+            
+            <li><a href="/cms" aria-expanded="false"><i class="icon icon-home" aria-hidden="true"></i>
+                <span class="nav-text">Dashboard</span></a>
+            </li>
+            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-o" aria-hidden="true"></i>
+                <span class="nav-text">My Users</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/cms/myusers/manage-users">Manage User</a></li>
+                </ul>
+            </li>
+            <%}%>
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('MYBLOGS'))){%>
+            <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+<span class="nav-text">My Blogs</span></a>
+                <ul aria-expanded="false">
+                    <li><a href="/cms/myblogs/general">Manage General</a></li>
+                    <li><a href="/cms/myblogs/feed/manage">Manage Post</a></li>
+                </ul>
+            </li> -->
+            <%}%> 
+            <!-- <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER') || (passport.user.role == 'CMS_USER_CITIZEN')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span class="nav-text">Locations</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/locations/manage">Manage Location</a></li>
+                    </ul>
+                </li>
+                <%}%>  -->
+            
+                <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('product'))){%> 
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-layout-25" aria-hidden="true"></i>
+                    <span class="nav-text">Category & Products</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/category/manage">Manage Category</a></li>
+                        <li><a href="/cms/category/add">Add Category</a></li>
+                        <li><a href="/cms/products/manage">Manage Products</a></li>
+                        <li><a href="/cms/products/add">Add Products</a></li>
+                    </ul>
+                </li>
+            <%}%> 
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('product'))){%> 
+
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon icon-house-search-engine" aria-hidden="true"></i><span class="nav-text">Product Attributes</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/attribute/add">Add Attribute</a></li>
+                        <li><a href="/cms/attribute/add/value">Add Attribute Values</a></li>
+                        <li><a href="/cms/attribute/manage">Manage Attributes</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('slider'))){%> 
+
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="ti ti-layout-slider" aria-hidden="true"></i><span class="nav-text">Slider</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/slider/manage">Manage Slider</a></li>
+                        <li><a href="/cms/slider/add">Add Slider</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('banner'))){%> 
+
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon icon-menu-34" aria-hidden="true"></i><span class="nav-text">Banner</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/banner/manage">Manage Banner</a></li>
+                        <li><a href="/cms/banner/add">Add Banner</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('brand'))){%> 
+
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="ti ti-camera" aria-hidden="true"></i><span class="nav-text">Brand</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/brand/manage">Manage Brand</a></li>
+                        <li><a href="/cms/brand/add">Add Brand</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER' && passport.user.permissions.includes('blog'))){%> 
+
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="ti ti-bookmark" aria-hidden="true"></i><span class="nav-text">Blogs</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/blogs/add">Add Blogs</a></li>
+                        <li><a href="/cms/blogs/manage">Manage Blogs</a></li>
+                        <li><a href="/cms/tags/manage">Manage Blog Tags</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-th" aria-hidden="true"></i><span class="nav-text">Recognitions</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/recognitions/manage">Manage Recognitions</a></li>
+                        <li><a href="/cms/recognitions/add">Add Recognitions</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon icon-webpage" aria-hidden="true"></i><span class="nav-text">Innovations</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/innovations/manage">Manage Innovations</a></li>
+                        <li><a href="/cms/innovations/general">Innovations General</a></li>
+                        <li><a href="/cms/innovation_slipshield/manage">Manage Slip Shield</a></li>
+                        <!-- <li><a href="/cms/innovationsdetail/manage">Manage Innovations Detail</a></li>
+                        <li><a href="/cms/slipShieldCategory/manage">Innovations Detail Category</a></li>
+                        <li><a href="/cms/categoryData/manage">Innovations Detail Category Data</a></li> -->
+                    </ul>
+                </li>
+            <%}%>
+
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-th" aria-hidden="true"></i><span class="nav-text">Innovations Detail</span></a>
+                    <ul aria-expanded="false">
+                         <li><a href="/cms/innovations/manage">Manage Innovations</a></li> 
+                        <li><a href="/cms/slipShield/general">Innovations Detail General</a></li>
+                        <li><a href="/cms/slipShieldCategory/manage">Innovations Detail Category</a></li>
+                        <li><a href="/cms/categoryData/manage">Innovations Detail Category Data</a></li>
+                    </ul>
+                </li> -->
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <!-- <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-th" aria-hidden="true"></i><span class="nav-text">Tags</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/tags/manage">Manage Tags</a></li>
+                    </ul>
+                </li> -->
+            <%}%>
+            
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti ti-layout-media-center" aria-hidden="true"></i>
+                    <span class="nav-text">Media TVC</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/mediatvc/manage">Manage Media TVC</a></li>
+                      
+                    </ul>
+                </li>
+            <%}%> 
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="la la-cc-diners-club" aria-hidden="true"></i>
+                    <span class="nav-text">Media</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/media/manage">Manage Media</a></li>
+                      
+                    </ul>
+                </li>
+            <%}%> 
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-world-2" aria-hidden="true"></i>
+                    <span class="nav-text">Dealers</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/dealers/manage">Manage Dealers</a></li>
+                      
+                    </ul>
+                </li>
+            <%}%>
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-e-reader" aria-hidden="true"></i>
+                    <span class="nav-text">Investor Relation</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/investorrelationscategory/manage">Manage Investor Relation Category</a></li>
+                        <li><a href="/cms/investorrelations/manage">Manage Investor Relation</a></li>
+                        
+                    </ul>
+                </li>
+            <%}%>
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-book-open-2" aria-hidden="true"></i>
+                    <span class="nav-text">Catalogues</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/catalogcategory/manage">Manage Catalogues Category</a></li>
+                        <li><a href="/cms/catalog/manage">Manage Catalogues</a></li>
+                        
+                    </ul>
+                </li>
+            <%}%>
+            <!-- <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <span class="nav-text">Center Of Excellence</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/investorrelations/manage">Manage Center Of Excellence</a></li>
+                    </ul>
+                </li>
+            <%}%>   
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                    class="fa fa-rss"></i><span class="nav-text">Services</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/services/manage">Manage Services</a></li>
+                    </ul>
+                </li>
+            <%}%>   
+
+
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-th" aria-hidden="true"></i><span class="nav-text">Health Packages</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/health-packages/manage">Manage Health Packages</a></li>
+                        <li><a href="/cms/health-packages/general">Health Package General</a></li>
+                    </ul>
+                </li>
+            <%}%>   
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-hospital-o" aria-hidden="true"></i><span class="nav-text">Hospital</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/hospitals/manage">Manage Hospitals</a></li>
+                    </ul>
+                </li>
+            <%}%>
+            
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i><span class="nav-text">Settings</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/settings/manage">Manage Settings</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER') || (passport.user.role == 'CMS_USER_CITIZEN')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-th" aria-hidden="true"></i><span class="nav-text">Speciality</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/speciality/manage">Manage Speciality</a></li>
+                        <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%><li><a href="/cms/speciality/general">Speciality General</a></li><%}%>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER') || (passport.user.role == 'CMS_USER_CITIZEN')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Doctors</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/doctors/manage">Manage Doctors</a></li>
+                        <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%><li><a href="/cms/doctors/general">Doctor General</a></li><%}%>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i><span class="nav-text">Diseases</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/diseases/manage">Manage Diseases</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-th" aria-hidden="true"></i>
+                    <span class="nav-text">Speciality Type</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/speciality-type/manage">Manage Speciality Type</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-th" aria-hidden="true"></i><span class="nav-text">Procedure</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/procedures/manage">Manage Procedure</a></li>
+                        <li><a href="/cms/procedures/general">Procedure General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-th" aria-hidden="true"></i><span class="nav-text">Patient Stories</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/patient-stories/manage">Manage Patient Stories</a></li>
+                        <li><a href="/cms/patient-stories/general">Patient Stories General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-medkit" aria-hidden="true"></i><span class="nav-text">Patient Reviews</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/patient-reviews/manage">Manage Patient Reviews</a></li>
+                        <li><a href="/cms/patient-reviews/general">Patient Reviews General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-hospital-o" aria-hidden="true"></i><span class="nav-text">Headers</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/headers/manage">Manage Headers</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-hospital-o" aria-hidden="true"></i><span class="nav-text">Footers</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/footers/manage">Manage Footers</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-hospital-o" aria-hidden="true"></i><span class="nav-text">Static Pages</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/static-pages/manage">Manage Static Pages</a></li>
+                    </ul>
+                </li>
+            <%}%> -->
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="icon icon-chart-bar-33" aria-hidden="true"></i><span class="nav-text">Contact Us</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/contactform/manage">Manage Contact Us Form</a></li>
+
+                        <li><a href="/cms/quickConnectform/manage">Manage Quick Connect Form</a></li>
+                    </ul>
+                </li>
+            <%}%>
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="ti ti-quote-right" aria-hidden="true"></i><span class="nav-text">FAQ</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/faq/manage">Manage FAQ</a></li>
+                        <li><a href="/cms/faq/add">Add FAQ</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="nav-text">About Us</span></a>
+                    <ul aria-expanded="false">
+                    <li><a href="/cms/aboutus/general">About Us</a></li>
+                    <li><a href="/cms/directors/manage">Board Of Directors</a></li>
+                    <li><a href="/cms/leadership/manage">Leadership Teams</a></li>
+                    <li><a href="/cms/international_business/general">International Business</a></li>
+                    <li><a href="/cms/about_contact/manage">About Contact</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <!-- <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-medkit" aria-hidden="true"></i><span class="nav-text">Courses</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/courses/manage">Manage Courses</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-medkit" aria-hidden="true"></i><span class="nav-text">Academics & Research</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/academics/manage">Manage Academics & Research</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="nav-text">Blogs</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/blogs/manage">Manage Blogs</a></li>
+                        <li><a href="/cms/blogs/general">Blogs General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="nav-text">Blogs Category</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/blogs-category/manage">Manage Blogs Category</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="nav-text">Second Opinion</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/second-opinion/manage">Manage Second Opinion</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="nav-text">About Us</span></a>
+                    <ul aria-expanded="false">
+                                               <li><a href="/cms/careers/general">Careers General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="nav-text">Mother & Child</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/mother-child/manage">Manage Mother & Child</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Doctor Bytes</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/doctor-bytes/manage">Manage Doctor Bytes</a></li>
+                        <li><a href="/cms/doctor-bytes/general">Doctor Bytes General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Insurance</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/insurance/manage">Manage Insurance</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+           
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">International</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/international-patient/edit">Edit International Patient</a></li>
+                        <li><a href="/cms/international-health-package/manage">Manage International Health Packages</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">News</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/news/manage">Manage News</a></li>
+                        <li><a href="/cms/news/general">News General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Enquiry</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/enquiry/manage">Manage Enquiry</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Plan Your Treatment</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/plan-treatment/manage">Manage Plan Your Treatment</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Technologies</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/technologies/manage">Manage Technologies</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Gallery</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/gallery/manage">Manage Gallery</a></li>
+                        <li><a href="/cms/gallery/general">Gallery General</a></li>
+                    </ul>
+                </li>
+            <%}%> -->
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti ti-home" aria-hidden="true"></i><span class="nav-text">Homepage</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/homepage/general">Homepage General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="ti ti-files" aria-hidden="true"></i><span class="nav-text">Bathware</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/bathware/general">Bathware General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-l-settings" aria-hidden="true"></i><span class="nav-text">Tiles</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/tiles/general">Tiles General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-l-settings" aria-hidden="true"></i><span class="nav-text">Menu</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/menu/manage">Manage Tiles Menu</a></li>
+                        <li><a href="/cms/menubathware/manage">Manage Bathware Menu</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-l-settings" aria-hidden="true"></i><span class="nav-text">Import Data</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/import/manage">Manage Imports</a></li>
+                    </ul>
+                </li>
+            <%}%>
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-l-settings" aria-hidden="true"></i><span class="nav-text">Keyword</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/keyword/manage">Manage Keyword</a></li>
+                        <li><a href="/cms/keyword/add">Add Keyword</a></li>
+
+                    </ul>
+                </li>
+            <%}%>
+
+            <!-- <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Awards</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/awards/edit">Edit Awards</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Book An Appointment</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/book-appointment/manage">Manage Book An Appointment</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Career Applications</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/apply-career/manage">Manage Career Applications</a></li>
+                    </ul>
+                </li>
+            <%}%> -->
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="icon icon-cloud-download-95" aria-hidden="true"></i><span class="nav-text">Careers</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/career_cat/manage">Manage Career Category</a></li>
+                        <li><a href="/cms/career_loca/manage">Manage Career Location</a></li>
+                        <li><a href="/cms/careers/manage">Manage Careers</a></li>
+                        <li><a href="/cms/careers/general">Careers General</a></li>
+                        <li><a href="/cms/testimonials/manage">Manage Career Testimonials</a></li>
+                        <li><a href="/cms/reflection/manage">Manage Career Reflection</a></li>
+                        <li><a href="/cms/integrated/manage">Manage Career Integrated Learning</a></li>
+
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if ((passport.user.role == 'ADMINISTRATOR') || (passport.user.role == 'CMS_USER')){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i class="fa fa-user-md" aria-hidden="true"></i><span class="nav-text">Get Inspired</span></a>
+                    <ul aria-expanded="false">
+                        <li><a href="/cms/we_loved/manage">Manage Get Inspired</a></li>
+                        <li><a href="/cms/we_loved/general">Get Inspired General</a></li>
+                    </ul>
+                </li>
+            <%}%>
+
+            <%if (passport.user.role == 'ADMINISTRATOR'){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                    class="fa fa-book"></i><span class="nav-text">Latest Update</span></a>
+                    <ul aria-expanded="false">                                    
+                        <li><a href="/cms/latest/manage">Latest Update</a></li>                       
+                    </ul>
+                </li>
+            <%}%> 
+
+            <%if (passport.user.role == 'ADMINISTRATOR'){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                    class="fa fa-book"></i><span class="nav-text">Experience Center</span></a>
+                    <ul aria-expanded="false">                                    
+                        <li><a href="/cms/experience_center/manage">Experience Center</a></li>                       
+                    </ul>
+                </li>
+            <%}%> 
+
+            <%if (passport.user.role == 'ADMINISTRATOR'){%>
+                <li><a class="has-arrow" href="javascript:void()" aria-expanded="false"><i
+                    class="fa fa-book"></i><span class="nav-text">Subscriber Emails</span></a>
+                    <ul aria-expanded="false">                                    
+                        <li><a href="/cms/subscriber-email/manage">Subscriber Emails</a></li>                       
+                    </ul>
+                </li>
+            <%}%> 
+
+        <!-- end here -->
+        </ul>
+    </div>
+
+
+</div>

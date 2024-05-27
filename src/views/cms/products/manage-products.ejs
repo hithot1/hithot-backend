@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS  </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-12 p-md-0">
+                        <div class="welcome-text d-flex">
+                            <h4>Manage Products</h4>
+                            <a class="btn btn-primary position-absolute right--0" href="/cms/products/add">Add</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Category</label>
+                                        <select name="category" class="single-select select-post-type d-block" id="product_category">
+                                            <option value="">------- select -------</option>
+                                            <% if (category_list && category_list.length) { for(let i = 0; i < category_list.length; i++) {%>
+                                                <option value="<%=category_list[i]._id%>"><%=category_list[i].categoryName%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Type</label>
+                                        <select name="categoryRef" class="single-select select-post-type d-block" id="product_categoryRef">
+                                            <option value="">------- select -------</option>
+                                            <% if (categoryref && categoryref.length) { for(let i = 0; i < categoryref.length; i++) {%>
+                                                <option value="<%=categoryref[i].value%>"><%=categoryref[i].label%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Status</label>
+                                        <select name="status" class="single-select select-post-type d-block" id="product_status">
+                                            <option value="">------- select -------</option>
+                                            <option value="enabled">Enabled</option>
+                                            <option value="disabled">Disabled</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Size</label>
+                                        <select name="size" class="single-select select-post-type d-block" id="product_size">
+                                            <option value="">------- select -------</option>
+                                            <% if (attribute_list["size"] && attribute_list["size"].attribute_value_data) { for(let i = 0; i < attribute_list["size"].attribute_value_data.length; i++) {%>
+                                                <option value="<%=attribute_list['size'].attribute_value_data[i]._id%>"><%=attribute_list["size"].attribute_value_data[i].value%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Finish</label>
+                                        <select name="finish" class="single-select select-post-type d-block" id="product_finish">
+                                            <option value="">------- select -------</option>
+                                            <% if (attribute_list["finish"] && attribute_list["finish"].attribute_value_data) { for(let i = 0; i < attribute_list["finish"].attribute_value_data.length; i++) {%>
+                                                <option value="<%=attribute_list['finish'].attribute_value_data[i]._id%>"><%=attribute_list["finish"].attribute_value_data[i].value%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Color</label>
+                                        <select name="color" class="single-select select-post-type d-block" id="product_color">
+                                            <option value="">------- select -------</option>
+                                            <% if (attribute_list["color"] && attribute_list["color"].attribute_value_data) { for(let i = 0; i < attribute_list["color"].attribute_value_data.length; i++) {%>
+                                                <option value="<%=attribute_list['color'].attribute_value_data[i]._id%>"><%=attribute_list["color"].attribute_value_data[i].value%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Pattern</label>
+                                        <select name="pattern" class="single-select select-post-type d-block" id="product_pattern">
+                                            <option value="">------- select -------</option>
+                                            <% if (attribute_list["pattern"] && attribute_list["pattern"].attribute_value_data) { for(let i = 0; i < attribute_list["pattern"].attribute_value_data.length; i++) {%>
+                                                <option value="<%=attribute_list['pattern'].attribute_value_data[i]._id%>"><%=attribute_list["pattern"].attribute_value_data[i].value%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Series</label>
+                                        <select name="series" class="single-select select-post-type d-block" id="product_series">
+                                            <option value="">------- select -------</option>
+                                            <% if (attribute_list["series"] && attribute_list["series"].attribute_value_data) { for(let i = 0; i < attribute_list["series"].attribute_value_data.length; i++) {%>
+                                                <option value="<%=attribute_list['series'].attribute_value_data[i]._id%>"><%=attribute_list["series"].attribute_value_data[i].value%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Available In</label>
+                                        <select name="available" class="single-select select-post-type d-block" id="product_available">
+                                            <option value="">------- select -------</option>
+                                            <% if (attribute_list["available"] && attribute_list["available"].attribute_value_data) { for(let i = 0; i < attribute_list["available"].attribute_value_data.length; i++) {%>
+                                                <option value="<%=attribute_list['available'].attribute_value_data[i]._id%>"><%=attribute_list["available"].attribute_value_data[i].value%></option>
+                                            <% } } %>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">Product Name</label>
+                                        <input type="text" class="form-control" name="productName" id="product_name">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">SKU</label>
+                                        <input type="text" class="form-control" name="sku" id="product_sku">
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label class="col-form-label">360 URL</label>
+                                        <input type="text" class="form-control" name="url360" id="product_url360">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12">                                                
+                                    <div class="form-group row">
+                                        <div class="col-lg-3">
+                                            <label>Apply Actions</label>
+                                            <select name="productaction" class="single-select select-post-type d-block" id="product_productaction">
+                                                <option value="">------- select -------</option>
+                                                <option value="delete">Delete</option>
+                                                <option value="enable">Enable</option>
+                                                <option value="disable">Disable</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-5">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <button type="button" class="btn btn-primary" id="download-products-csv" onclick="downloadProductsCSV()">Download Products CSV</button>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <button type="button" class="btn btn-primary" id="apply-filter" onclick="applyFilters()">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="myTable" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th><input type="checkbox" name="product_action_checkbox_selectall" id="product_action_checkbox_selectall"></th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Category</th>
+                                                <th>SKU</th>
+                                                <th>Size</th>
+                                                <th>Finish</th>
+                                                <th>Color</th>
+                                                <th>Pattern</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="productsHtml">
+
+                                       
+                                          
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th></th>
+                                                <th>Name</th>
+                                                <th>Type</th>
+                                                <th>Category</th>
+                                                <th>SKU</th>
+                                                <th>Size</th>
+                                                <th>Finish</th>
+                                                <th>Color</th>
+                                                <th>Pattern</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            applyFilters();
+
+            $('#product_action_checkbox_selectall').change(function() {
+                if ($(this).is(":checked")) {
+                    let elements = document.getElementsByClassName("productaction");
+
+                    for(let i = 0; i < elements.length; i++) {
+                        elements[i].checked = true;
+                    }
+                } else {
+                    let elements = document.getElementsByClassName("productaction");
+
+                    for(let i = 0; i < elements.length; i++) {
+                        elements[i].checked = false;
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).on('click', '.remove_product', async function() {
+
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'})
+            .then(async (result) => {
+                if (result.isConfirmed) {
+
+                    const resp = await asyncDelete('/cms/products/remove', '/'+id);
+
+                    if (resp && resp.success) {
+                        Swal.fire({icon: "success", text: "Products deleted successfully"});
+                        $(this).parents('tr').remove();
+                        // window.location.href = window.location.href;
+                    } else {
+                        if (resp.message) {
+                            alert(resp.message);
+                        } else {
+                            alert(resp.error);
+                        }
+                    }
+                }
+            });
+
+        
+        });
+    </script>
+    <script>
+        async function applyFilters() {
+
+            $('#myTable').DataTable().clear().destroy();
+
+            let category = $('#product_category').val();
+            let categoryref = $('#product_categoryRef').val();
+            let status = $('#product_status').val();
+            let size = $('#product_size').val();
+            let finish = $('#product_finish').val();
+            let color = $('#product_color').val();
+            let pattern = $('#product_pattern').val();
+            let series = $('#product_series').val();
+            let available = $('#product_available').val();
+            let productName = $('#product_name').val();
+            let sku = $('#product_sku').val();
+            let url360 = $('#product_url360').val();
+
+            let apiurl = '/api/products/manageProductsByFilter?'
+            const categoryReference = <%-JSON.stringify(categoryref)%>;
+            if(category || categoryref || series || size || sku || status || finish || color || pattern || productName || url360 || available) {
+
+                category && (apiurl = apiurl+`category=${category}&`);
+                categoryref && (apiurl = apiurl+`categoryref=${categoryref}&`);
+                status && (apiurl = apiurl+`status=${status}&`);
+                size && (apiurl = apiurl+`size=${size}&`);
+                finish && (apiurl = apiurl+`finish=${finish}&`);
+                color && (apiurl = apiurl+`color=${color}&`);
+                pattern && (apiurl = apiurl+`pattern=${pattern}&`);
+                series && (apiurl = apiurl+`series=${series}&`);
+                available && (apiurl = apiurl+`available=${available}&`);
+                productName && (apiurl = apiurl+`productName=${productName}&`);
+                sku && (apiurl = apiurl+`sku=${sku}&`);
+                url360 && (apiurl = apiurl+`url360=${url360}&`);
+
+            }
+                console.log(apiurl);
+
+                let table_data = $('#myTable').DataTable( {
+                    ajax: apiurl.substring(0, apiurl.length-1), 
+                    // 'pagelength' : true,
+                    type: "GET", 
+                    locator: "data", 
+                "columns": [
+                    { "data": "_id"},
+                    { "data": "productName" },
+                    { "data": "categoryRef" },
+                    { "data": "parentCategory" },
+                    { "data": "sku" },
+                    { "data": "attribute" },
+                    { "data": "attribute" },
+                    { "data": "attribute" },
+                    { "data": "attribute" },
+                    { "data": "productAvailability" },
+                    { "data": "updated_at" },
+                    { "data": "_id" }
+                ],
+                "columnDefs": [ {
+                    "targets": 0,
+                    "data": "_id",
+                    "render": function ( data, type, row, meta) {
+                        return '<input type="checkbox" value="'+data+'" name="product_action_checkbox" class="productaction" id="product_action_checkbox">'                        
+                    }
+                }, {
+                    "targets": 2,
+                    "data": "categoryRef",
+                    "render": function ( data, type, row, meta ) {
+                        return data.map((x) => {
+                            for(let i = 0; i < categoryReference.length; i++) {
+                                if (categoryReference[i].value === x) {
+                                    return categoryReference[i].label
+                                }
+                            }
+                        }).join(",")
+                    }
+                }, {
+                    "targets": 3,
+                    "data": "parentCategory",
+                    "render": function( data, type, row, meta) {
+                        return data.map(x => x.categoryName).join(", ")
+                    }
+                }, {
+                    "targets": 5,
+                    "data": "attribute",
+                    "render": function( data, type, row, meta) {
+                        return data.size?.value
+                    }
+                }, {
+                    "targets": 6,
+                    "data": "attribute",
+                    "render": function( data, type, row, meta) {
+                        return data.finish?.value
+                    }
+                }, {
+                    "targets": 7,
+                    "data": "attribute",
+                    "render": function( data, type, row, meta) {
+                        return (data.color && data.color.length) ? data.color.map(x => x.value).join(", ") : data.color ? data.color.value : ""
+                    }
+                }, {
+                    "targets": 8,
+                    "data": "attribute",
+                    "render": function( data, type, row, meta) {
+                        return (data.pattern && data.pattern.length) ? data.pattern.map(x => x.value).join(", ") : data.pattern?.value
+                    }
+                }, {
+                    "targets": 9,
+                    "data": "productAvailability",
+                    "render": function( data, type, row, meta) {
+                        return data ? 'Activated' : 'Deactivated'
+                    }
+                }, {
+                    "targets": 10,
+                    "data": "updated_at",
+                    "render": function( data, type, row, meta) {
+                        return moment(data).format('DD/MM/YYYY')
+                    }
+                }, {
+                    "targets": 11,
+                    "data": "_id",
+                    "render": function( data, type, row, meta) {
+                        return '<a class="btn btn-primary" href="/cms/products/edit/'+data+'">Edit</a><button class="btn btn-danger remove_product" data-id="'+data+'">Delete</button>'
+                    }
+                } ]
+                });
+
+                table_data.draw()
+
+        }
+    </script>
+
+    <script>
+        async function downloadProductsCSV() {
+            let category = $('#product_category').val();
+            let categoryref = $('#product_categoryRef').val();
+            let status = $('#product_status').val();
+            let size = $('#product_size').val();
+            let finish = $('#product_finish').val();
+            let color = $('#product_color').val();
+            let pattern = $('#product_pattern').val();
+            let series = $('#product_series').val();
+            let available = $('#product_available').val();
+            let productName = $('#product_name').val();
+            let sku = $('#product_sku').val();
+            let url360 = $('#product_url360').val();
+
+            const categoryReference = <%-JSON.stringify(categoryref)%>;
+            let apiurl = '/api/products/exportProducts?'
+            if(category || categoryref || series || size || sku || status || finish || color || pattern || productName || url360 || available) {
+
+                category && (apiurl = apiurl+`category=${category}&`);
+                categoryref && (apiurl = apiurl+`categoryref=${categoryref}&`);
+                status && (apiurl = apiurl+`status=${status}&`);
+                size && (apiurl = apiurl+`size=${size}&`);
+                finish && (apiurl = apiurl+`finish=${finish}&`);
+                color && (apiurl = apiurl+`color=${color}&`);
+                pattern && (apiurl = apiurl+`pattern=${pattern}&`);
+                series && (apiurl = apiurl+`series=${series}&`);
+                available && (apiurl = apiurl+`available=${available}&`);
+                productName && (apiurl = apiurl+`productName=${productName}&`);
+                sku && (apiurl = apiurl+`sku=${sku}&`);
+                url360 && (apiurl = apiurl+`url360=${url360}&`);
+
+            }
+
+            console.log(apiurl);
+
+            const resp = await asyncPost(apiurl.substring(0, apiurl.length-1), '', {});
+
+            console.log(resp);
+
+            if(resp.success) {
+
+                const link = document.createElement('a');
+                link.href = resp.filePath;
+                link.setAttribute('download', resp.fileName);
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+
+            } else {
+                if (resp.message) {
+                    alert(resp.message);
+                } else {
+                    alert(resp.message);
+                }
+            }
+        }
+    </script>
+
+    <script>
+        $(document).on('change', '#product_productaction', async function () { 
+
+            let action_type = $('#product_productaction').val();
+            let attributeList = [];
+            $('input:checkbox[name=product_action_checkbox]:checked').each(function() { 
+                attributeList.push($(this).val());
+            });
+
+            if(!action_type) {
+                return;
+            }
+
+            if(attributeList.length < 1) {
+                alert("You haven't selected any items");
+                $('#product_productaction').val("").trigger('change');
+                return;
+            }
+
+            console.log("IDs of checkboxes", attributeList, action_type);
+
+            Swal.fire({
+                title: `Are you sure ${action_type === "delete" ? 'you want to delete': action_type === "enable" ? 'you want to enable': action_type === "disable" ? 'you want to disable' : ""} these products?`,
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes!!',
+                cancelButtonText: 'No, cancel!'})
+            .then(async (result) => {
+                if (result.isConfirmed) {
+
+                    let formdata = new FormData();
+                    formdata.append('ids', attributeList);
+                    formdata.append('action_type', action_type);
+                    
+
+                    const resp = await asyncPost('/api/products/executeActions', '', formdata);
+
+                    if (resp && resp.success) {
+                        Swal.fire({icon: "success", text: "Products action successfully"});
+                        applyFilters();
+                        // window.location.href = window.location.href;
+                    } else {
+                        if (resp.message) {
+                            alert(resp.message);
+                        } else {
+                            alert(resp.error);
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+
+    <%- include('../preloader') -%>
+
+    <div id="main-wrapper">
+
+        <%- include('../nav-header') -%>
+
+        <%- include('../header') -%>
+
+        <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Add New Store</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+
+                                                    <label class="col-lg-2 col-form-label">Status
+                                                        <!-- <span class="text-danger">*</span> -->
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control input-height" name="status">
+                                                            <option value="">Select</option>
+                                                            <option value="Enable">Enabled</option>
+                                                            <option value="Disabled">Disabled
+                                                            </option>
+                                                            <input name='_csrf' value='<%=_csrf%>' id="csrf"
+                                                                style="display:none;">
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Dealer Code
+                                                        <span class="text-danger"></span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="dealercode"
+                                                            placeholder="Enter dealer code...">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+
+
+
+                                                    <label class="col-lg-2 col-form-label">Name
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="name"
+                                                            placeholder="Please enter name" required>
+
+                                                    </div>
+
+
+                                                    <label class="col-lg-2 col-form-label">Contact Person
+                                                        <span class="text-danger"></span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Please enter name" name="contactperson"
+                                                            >
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Logo Image
+                                                        <span class="text-danger"></span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="logoimage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Disease Image Alt<span
+                                                        class="text-danger"></span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="logoalt" placeholder="Enter image alt...">
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <label class="col-lg-2 col-form-label">Category
+                                                <!-- <span class="text-danger">*</span> -->
+                                            </label>
+                                            <div class="col-lg-4">
+                                                <select class="form-control input-height" name="category">
+                                                    <option value="">Please select</option>
+
+                                                    <%for(let i=0; i< dealercat.length; i++){%>
+                                                    <option value="<%-dealercat[i].value%>"><%-dealercat[i].key%>
+                                                    </option>
+                                                    <%}%>
+                                               
+                                                </select>
+
+                                            </div>
+                                            <label class="col-lg-2 col-form-label">Type
+                                                <!-- <span class="text-danger">*</span> -->
+                                            </label>
+                                            <div class="col-lg-4">
+                                                <select class="form-control input-height" name="dealertype">
+                                                    <option value="">Please select</option>
+
+                                                    <%for(let i=0; i< dealertype.length; i++){%>
+                                                    <option value="<%-dealertype[i].value%>"><%-dealertype[i].key%>
+                                                    </option>
+                                                    <%}%>
+                                            
+                                                </select>
+
+                                            </div>
+                                            
+                                        <!-- <div id="storeprint" style="display:none;" class="row mt-5"> -->
+                                            <!-- <label class="col-lg-2 col-form-label">Preview Image
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                          
+                                            <div class="col-lg-4">
+                                                <div class="custom-file">
+                                                    <input name="previewimage" type="file" class="custom-file-input"
+                                                        value="">
+                                                    <label class="custom-file-label">Choose file</label>
+                                                    <img class="small_image mt-2 mb-3 image-selected" src="">
+
+                                            </div> -->
+
+                                            <!-- </div> -->
+                                            <div class="form-group row"></div>
+                                            <label class="col-lg-2 col-form-label">Subscription Date From
+                                                <!-- <span class="text-danger">*</span> -->
+                                            </label>
+                                            <div class="col-lg-4">
+                                               <input type="date" class="form-control" placeholder="Please select" name="datefrom">
+
+                                            </div>
+                                        
+                                    
+                                    <label class="col-lg-2 col-form-label">Subscription Date To
+                                        <!-- <span class="text-danger">*</span> -->
+                                    </label>
+                                    <div class="col-lg-4">
+                                       <input type="date" class="form-control" placeholder="Please select" name="dateto">
+
+                                    </div>
+                                        </div>
+                                            
+                                        <hr>
+
+                                        <h5>Address </h5>
+
+                                        <div class="form-group row">
+                                        <label class="col-lg-2 col-form-label">Country
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-4">
+                                            <select class="form-control input-height" name="country" id="country" onchange="countrychange()" required>
+                                                <option value="">Please select</option>
+
+                                                <%for(let i=0; i< country.length; i++){%>
+                                                    <option value="<%-country[i].value%>"><%-country[i].key%></option>
+                                                    <%}%>
+                                           
+                                            </select>
+
+                                        </div>
+                                    
+                                
+                                <label class="col-lg-2 col-form-label">State/Province
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-4" id="normal">
+                                    <select class="form-control input-height state" id="state" name="state" onchange="statechanges()" >
+
+                                    <option value="">Please select</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 state_data" id="india" style="display: none;">
+                                    <select class="form-control input-height  state" id="statename" name="state_india"  onchange="statechanges()" >
+                                        <option value="">Please select</option>
+
+                                        <%for(let i=0; i< state.length; i++){%>
+                                            <%if(state[i].title != "Nepal"){%>
+                                                    <option value="<%-state[i]._id%>"><%-state[i].title%></option>
+                                                    <%}}%>
+                                   
+                                    </select>
+
+                                </div>
+
+                        
+                                <div class="col-lg-4 state_data" id="nepal" style="display: none;" onchange="statechanges()" >
+                                    <select class="form-control input-height state" name="state_nepal" id="statenepal" >
+                                        <option value="">Please select</option>
+                                        <%for(let i=0; i< state.length; i++){%>
+                                            <%if(state[i].title == "Nepal" || state[i].title == "Others"){%>
+                                                    <option value="<%-state[i]._id%>"><%-state[i].title%></option>
+                                                    <%}}%>
+                                        <!-- <option value="Nepal">Nepal</option>
+                                        <option value="Others">Others</option> -->
+                                            
+                                   
+                                    </select>
+
+                            </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-2 col-form-label">Cities
+                                            <!-- <span class="text-danger">*</span> -->
+                                        </label>
+                                        <div class="col-lg-4 " >
+                                            <select class="form-control input-height   city_filter " name="city"  >
+
+                                                <option value="">Please select</option>
+                                                </select>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-2 col-form-label">Postcode
+                                            <!-- <span class="text-danger">*</span> -->
+                                        </label>
+                                        <div class="col-lg-4">
+                                           <input type="text" class="form-control" placeholder="Please enter postcode" name="postcode" maxlength="6" minlength="6">
+    
+                                        </div>
+                            
+                            <label class="col-lg-2 col-form-label">Address
+                                <!-- <span class="text-danger">*</span> -->
+                            </label>
+                            <div class="col-lg-4">
+                               <input type="text" class="form-control" placeholder="Please select" name="address">
+
+                            </div>
+                                </div>
+
+                                
+                                <hr>
+                                <h5>Contact </h5>
+                                
+
+                                <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Email
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="col-lg-4">
+                                   <input type="email" class="form-control" placeholder="Please enter email" name="email">
+
+                                </div>
+                            
+                        
+                        <label class="col-lg-2 col-form-label">Mobile
+                            <!-- <span class="text-danger">*</span> -->
+                        </label>
+                        <div class="col-lg-4">
+                           <input type="text" class="form-control" placeholder="Please enter mobile number" name="mobile" maxlength="12">
+
+                        </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-lg-2 col-form-label">Phone
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <div class="col-lg-4">
+                                   <input type="text" class="form-control" placeholder="Please enter phone number" name="phone" maxlength="15">
+
+                                </div>
+                            
+                        
+                                <label class="col-lg-2 col-form-label">Fax
+                                    <!-- <span class="text-danger">*</span> -->
+                                </label>
+                                <div class="col-lg-4">
+                                   <input type="text" class="form-control" placeholder="Please enter fax" name="fax" maxlength="15">
+        
+                                </div>
+                            </div>
+                                    
+                                            <!-- <label class="col-lg-2 col-form-label">Hi-Res Pdf
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-4">
+                                                <input name="hirespdf" type="file" class="custom-file-input"
+                                                value="" accept="pdf/">
+                                            <label class="custom-file-label">Choose pdf file</label> -->
+                                            <!-- <img class="small_image mt-2 mb-3 image-selected" src=""> -->
+
+                                            <!-- </div> -->
+                                           
+                                         <!-- </div> -->
+
+                                         <!-- <div class="row mt-5" id="storetype" style="display: none;">
+                                            <label class="col-lg-2 col-form-label">YouTube URL
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-4">
+                                                <input type="text" class="form-control" name="youtubeurl"
+                                                    placeholder="Enter URL..." required>
+                                                
+                                            </div> -->
+                                            <!-- <label class="col-lg-2 col-form-label">Low-Res Pdf
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-4">
+                                                <div class="custom-file">
+                                                    <input name="lowrespdf" type="file" class="custom-file-input" accept="pdf/*" required >
+                                                    <label class="custom-file-label">Choose pdf file</label>
+                                                    <!<label>Recommended Size 370 * 250 </label> --
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary"
+                                                            id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+
+
+    <%- include("../scripts") -%>
+
+<script>
+        function countrychange() {
+
+            let store = $('#country').val()
+            // console.log(store)
+            if (store == "Nepal") {
+                $('#nepal').show()
+                $("#india").hide()
+                $("#normal").hide()
+                console.log(store)
+
+            } else if (store == "India") {
+                $("#india").show()
+
+                $('#nepal').hide()
+                $("#normal").hide()
+                console.log(store)
+
+            } else {
+                $("#normal").show()
+                $("#india").hide()
+                $('#nepal').hide()
+                console.log(store)
+            }
+            // alert(store)
+            // console.log("readmore", store);
+        }
+
+
+        // $(document).ready(function () {
+
+
+
+        //     let cities_data = < % -JSON.stringify(city) % > ;
+
+
+
+        // });
+$(document).on('click', '#submit-form', async function () {
+        const is_form_valid = $("#cms_form").valid();
+
+        if (is_form_valid) {
+        let formData = new FormData(document.querySelector('#cms_form'));
+        const resp = await asyncPost( '/cms/dealers/add', '', formData);
+
+        if (resp.success) {
+                  alert('New store added successfully');
+                  location.reload();
+                  } else {
+                      if (resp.message) {
+                          alert(resp.message);
+                              } else {
+                             alert(resp.error);
+                                 }
+                               }
+                            } else {
+                                alert(is_form_valid)
+                            }
+
+
+                     });
+                                                         
+
+   function statechanges() {
+                                                           
+   let state_selected;
+
+    if ($("#country").val() == "India") {
+                state_selected = $("#statename").val();
+            } else {
+                // alert("Nepal")
+                state_selected = $("#statenepal").val();
+            }
+            let cities_data = <%-JSON.stringify(city)%> ;
+
+            let curr_state_cities = cities_data.filter((x) => x.state ==
+                state_selected);
+            html = ``
+            $('.city_filter').html("");
+
+
+            html += ` <option value="">Please select</option>`;
+            for (let city of curr_state_cities) {
+
+
+                html += `
+
+                <option value="${city._id}">${city.title}</option>
+                
+                `
+
+            }
+
+            // html += `<option value="others">Others</option>`;
+
+            $('.city_filter').append(html)
+
+
+        }
+    </script>
+</body>
+
+</html>

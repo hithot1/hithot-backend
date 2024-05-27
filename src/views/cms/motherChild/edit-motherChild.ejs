@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Mother & Child</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" value="<%=data.title%>" placeholder="Enter title..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="motherChildBannerImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.motherChildBannerImage%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Banner Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="motherChildBannerImageAlt" value="<%=data.motherChildBannerImageAlt%>" placeholder="Enter banner image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Mobile Banner Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="motherChildMobileImage" type="file" class="custom-file-input" >
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.motherChildMobileImage%>" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" name="description" value="<%=data.description%>" required><%=data.description%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Slug URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" value="<%=data.slug%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" value="<%=data.metaTitle%>" placeholder="Enter meta title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" name="metaDescription" value="<%=data.metaDescription%>" required><%=data.metaDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Overview Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="overviewTitle" value="<%=data.overviewTitle%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Overview Sub Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="overviewSubTitle" value="<%=data.overviewSubTitle%>" placeholder="Enter sub title..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">OverviewDescription
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control" rows="4" id="comment" name="overviewDescription" value="<%=data.overviewDescription%>" required><%=data.overviewDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Overview Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="overviewImage" type="file" class="custom-file-input" >
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.overviewImage%>" >
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Overview Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="overviewImageAlt" value="<%=data.overviewImageAlt%>" placeholder="Enter thumbnail alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Misc Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="miscTitle" value="<%=data.miscTitle%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Misc Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" name="miscDescription" value="<%=data.miscDescription%>" required><%=data.miscDescription%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Section Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="sectionTitle" value="<%=data.sectionTitle%>" placeholder="Enter title..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Section Sub Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="sectionSubTitle" value="<%=data.sectionSubTitle%>" placeholder="Enter sub title..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hospital Names
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="hospitalNames[]" class="form-control select-tag select-tag-hospitalnames multi-select" multiple="multiple" required>
+                                                        <% for (let hospital of hospital_data) { %>
+                                                            <option value="<%= hospital._id%>"><%= hospital.hospitalName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Doctor Names
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="doctorNames[]" class="form-control select-tag select-tag-doctornames multi-select" multiple="multiple" required>
+                                                        <% for (let doctor of doctor_data) { %>
+                                                            <option value="<%= doctor._id%>"><%= doctor.doctorName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Patient Stories
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="patientStories[]" class="form-control select-tag select-tag-patientStories multi-select" multiple="multiple" required>
+                                                        <% for (let patientStories of patient_stories_data) { %>
+                                                            <option value="<%= patientStories._id%>"><%= patientStories.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Virtual Tour Link
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="virtualTourLink" value="<%=data.virtualTourLink%>" placeholder="Enter virtual tour link..." required>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Map Link
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="mapLink" value="<%=data.mapLink%>" placeholder="Enter map link..." required>
+                                                    </div>
+                                                </div>                              
+
+                                                <div class="customize_section-delivery">
+                                                    <% for (let delivery of data.deliveryGroupData) { %>
+                                                    <div class="form-group row new-gallery previous-delivery-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Delivery Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=delivery.deliveryTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Delivery Sub Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=delivery.deliverySubTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">No. of sessions
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=delivery.noOfSessions%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Delivery Description
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=delivery.deliveryDescription%>
+                                                            </div>
+                                                        </div>
+
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_delivery_row" data-id="<%= delivery._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add-row-delivery"> Add Delivery Details </button>
+                                                        </div>
+                                                    </div>
+                                                </div>     
+                                                
+                                                <div class="customize_section-room">
+                                                    <% for (let room of data.roomGroupData) { %>
+                                                    <div class="form-group row new-gallery previous-room-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Room Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=room.roomTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Room Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= room.roomImage%>" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label" >Room Image Alt<span
+                                                                class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=room.roomImageAlt%>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_room_row" data-id="<%= room._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add-row-room"> Add Room Details </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                                <div class="customize_section-wellness">
+                                                    <% for (let wellness of data.wellnessProgramGroupData) { %>
+                                                    <div class="form-group row new-gallery previous-wellness-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Wellness Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=wellness.wellnessTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Wellness Sub Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=wellness.wellnessSubTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Wellness Icon
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= wellness.wellnessIcon%>" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Wellness Description
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=wellness.wellnessDescription%>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_wellness_row" data-id="<%= wellness._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add-row-wellness"> Add Wellness Details </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="customize_section-whychoose">
+                                                    <% for (let whyChoose of data.whyChooseGroupData) { %>
+                                                    <div class="form-group row new-gallery previous-whychoose-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Why Choose Title
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=whyChoose.whyChooseTitle%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Why Choose Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= whyChoose.whyChooseImage%>" >
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label" >Why Choose Image Alt<span
+                                                                class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=whyChoose.whyChooseImageAlt%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Why Choose Description
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <%=whyChoose.whyChooseDescription%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_whychoose_row" data-id="<%= whyChoose._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add-row-whychoose"> Add Why Choose Details </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        const appendDeliveryHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Delivery Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="deliveryTitle" placeholder="Enter delivery title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Delivery Sub Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="deliverySubTitle" placeholder="Enter delivery sub title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">No. of sessions
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="number" class="form-control" name="noOfSessions" placeholder="Enter no of sessions..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Delivery Description
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <textarea class="form-control" rows="4" id="comment" name="deliveryDescription"></textarea>
+                </div>
+            </div>
+
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove-row-delivery" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add-row-delivery" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+
+        const appendRoomHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Room Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="roomTitle" placeholder="Enter room title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Room Image
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="roomImage" type="file" class="custom-file-input" required>
+                        <label class="custom-file-label">Choose Image file</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label" >Room Image Alt<span
+                    class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="roomImageAlt" placeholder="Enter room image alt..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove-row-room" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add-row-room" type="button"><i class="fa fa-plus"></i></button>
+            </div>
+            </div>`;
+
+        const appendWellnessHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Wellness Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="wellnessTitle" placeholder="Enter wellness title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Wellness Sub Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="wellnessSubTitle" placeholder="Enter wellness sub title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Wellness Icon
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="wellnessIcon" type="file" class="custom-file-input" required>
+                        <label class="custom-file-label">Choose Image file</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Wellness Description
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <textarea class="form-control" rows="4" id="comment" name="wellnessDescription" required></textarea>
+                </div>
+            </div>
+
+            <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove-row-wellness" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add-row-wellness" type="button"><i class="fa fa-plus"></i></button>
+            </div>
+            </div>`;
+
+        const appendWhyChooseHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Why Choose Title
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="whyChooseTitle" placeholder="Enter why choose title..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Why Choose Image
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="whyChooseImage" type="file" class="custom-file-input" required>
+                        <label class="custom-file-label">Choose Image file</label>
+                    </div>
+                </div>
+                </div>
+                <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label" >Why Choose Image Alt<span
+                    class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="whyChooseImageAlt" placeholder="Enter why choose image alt..." required>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Why Choose Description
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <textarea class="form-control" rows="4" id="comment" name="whyChooseDescription" required></textarea>
+                </div>
+            </div>
+
+            <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove-row-whychoose" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add-row-whychoose" type="button"><i class="fa fa-plus"></i></button>
+            </div>
+            </div>`;
+
+        $(document).on('click', '.add-row-delivery', function() {
+            $('.customize_section-delivery').append(appendDeliveryHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove-row-delivery', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        $(document).on('click', '.add-row-room', function() {
+            $('.customize_section-room').append(appendRoomHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove-row-wellness', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        $(document).on('click', '.add-row-wellness', function() {
+            $('.customize_section-wellness').append(appendWellnessHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove-row-room', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        $(document).on('click', '.add-row-whychoose', function() {
+            $('.customize_section-whychoose').append(appendWhyChooseHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove-row-whychoose', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        let delete_delivery_rows = [];
+        let delete_room_rows = [];
+        let delete_why_choose_rows = [];
+        let delete_wellness_rows = [];
+
+        $(document).on('click', '.remove_delivery_row', function() {
+            delete_delivery_rows.push($(this).data('id'));
+            $(this).parents('.previous-delivery-row').remove();
+        });
+
+        $(document).on('click', '.remove_room_row', function() {
+            delete_room_rows.push($(this).data('id'));
+            $(this).parents('.previous-room-row').remove();
+        });
+
+        $(document).on('click', '.remove_wellness_row', function() {
+            delete_wellness_rows.push($(this).data('id'));
+            $(this).parents('.previous-wellness-row').remove();
+        });
+
+        $(document).on('click', '.remove_whychoose_row', function() {
+            delete_why_choose_rows.push($(this).data('id'));
+            $(this).parents('.previous-whychoose-row').remove();
+        });
+        
+        $(document).ready(function() {
+            $('.select-tag-hospitalnames').val(<%- JSON.stringify(data.hospitalNames)%>).trigger('change');
+            $('.select-tag-doctornames').val(<%- JSON.stringify(data.doctorNames)%>).trigger('change');
+            $('.select-tag-patientStories').val(<%- JSON.stringify(data.patientStories)%>).trigger('change');
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+                formData.append('delete_delivery_rows', delete_delivery_rows);
+                formData.append('delete_room_rows', delete_room_rows);
+                formData.append('delete_why_choose_rows', delete_why_choose_rows);
+                formData.append('delete_wellness_rows', delete_wellness_rows);
+
+                const resp = await asyncPost('/cms/mother-child/edit','' ,formData);          
+                
+                if (resp.success) {
+                    alert('Mother & Child updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

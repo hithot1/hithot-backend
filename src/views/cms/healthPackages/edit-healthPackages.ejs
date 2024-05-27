@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Health Package</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="edit-form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" placeholder="Enter title..." value="<%=data.title%>" required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Price
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="price" placeholder="Enter price..." value="<%=data.price%>" required>
+                                                    </div>
+                                                </div>
+                                               
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="description" value="<%=data.description%>" required><%=data.description%></textarea>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">No. Of Days
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="noOfDays" placeholder="Enter no. of days..." value="<%=data.noOfDays%>" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Age
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="single-select select-age d-block" name="age" required>
+                                                            <option value="0 - 10">0 - 10</option>
+                                                            <option value="10 - 20">10 - 20</option>
+                                                            <option value="20 - 30">20 - 30</option>
+                                                            <option value="30 - 40">30 - 40</option>
+                                                            <option value="40 - 50">40 - 50</option>
+                                                            <option value="50 - 60">50 - 60</option>
+                                                            <option value="60 - 70">60 - 70</option>
+                                                            <option value="70 - 80">70 - 80</option>
+                                                            <option value="80 - 90">80 - 90</option>
+                                                            <option value="90 - 100">90 - 100</option>
+                                                        </select>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Gender
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="single-select select-gender d-block" name="gender" required>
+                                                            <option value="male">Male</option>
+                                                            <option value="female">Female</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Call Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="callImage" type="file" class="custom-file-input" value="<%=data.callImage%>">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.callImage%>" >
+                                                            <!-- <label>Recommended Size 59 * 63 </label> -->
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Call mage Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="callImageAlt" placeholder="Enter image alt..." value="<%=data.callImageAlt%>" required>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">
+                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8 ml-auto">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        $(document).ready(function() {
+            $('.select-gender').val('<%= data.gender%>').trigger('change');
+            $('.select-age').val('<%= data.age%>').trigger('change');
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                console.log(formData);
+
+                const resp = await asyncPost('/cms/health-packages/edit-health-packages', '', formData);
+
+                console.log(formData);
+
+                if (resp && resp.success) {
+                    alert('health Package updated successfully');
+                    // window.location.href = window.location.href;
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+
+        });
+
+        
+    </script>
+</body>
+
+</html>

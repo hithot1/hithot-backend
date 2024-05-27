@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Catalog</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="edit-form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+
+
+                                                    <label class="col-lg-2 col-form-label">Status
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control input-height" name="status">
+                                                            <option value="<%=data.status%>"><%=data.status%></option>
+                                                            <option value="Enable">Enabled</option>
+                                                            <option value="Disabled">Disabled
+                                                            </option>
+
+                                                        </select>
+                                                    </div>
+
+
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" placeholder="Enter title..." value="<%=data.title%>" required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+
+                                                  
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    
+                                                    <label class="col-lg-2 col-form-label">Category 
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+
+                                                        <select class="form-control input-height" name="category">
+                                                            <%for(let i=0; i< category.length; i++){
+                                                                if(category[i]._id == data.category){%>
+                                                                
+                                                                <option value="<%-category[i]._id%>"><%-category[i].title%></option>
+                                                                <%}}%>
+                                                            
+                                                            <%for(let i=0; i< category.length; i++){
+                                                                if(category[i]._id != data.category && category[i].parent && category[i].parent != ""){%>
+
+                                                            <option value="<%-category[i]._id%>"><%-category[i].title%></option>
+                                                            <%}}%>
+                                                            
+
+                                                        </select>
+
+                           
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Financial Year
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <select class="form-control input-height" name="financial_year">
+                                                            <option value="<%-data.financial_year%>"><%-data.financial_year%></option>
+                                                            <option value="2022-2023">2022-2023</option>
+                                                            <option value="2021-2022">2021-2022</option>
+                                                            <option value="2020-2021">2020-2021</option>
+                                                            <option value="2019-2020">2019-2020</option>
+                                                            <option value="2018-2019">2018-2019</option>
+                                                            <option value="2017-2018">2017-2018</option>
+                                                            <option value="2016-2017">2016-2017</option>
+                                                            <option value="2015-2016">2015-2016</option>
+                                                            <option value="2014-2015">2014-2015</option>
+                                                            <option value="2013-2014">2013-2014</option>
+                                                            <option value="2012-2013">2012-2013</option>
+                                                            <option value="2011-2012">2011-2012</option>
+                                                            <option value="2010-2011">2010-2011</option>
+        
+                                                        </select>
+        
+                                                    </div>
+
+                                                    </div>
+                                                
+                                                </div>
+
+
+                                                <!-- <label class="col-lg-2 col-form-label">New To
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                   <input type="date" class="form-control" placeholder="Please select" name="newto" value="<%-data.newto%>">
+    
+                                                </div> -->
+                                            <!-- <div id="storeprint" style="display:none; margin-left: 13px;" class="row mt-5" > -->
+                                                <label class="col-lg-2 col-form-label">Preview Image
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                              
+                                                <div class="col-lg-4">
+                                                    <div class="custom-file">
+                                                        <input name="previewimage" type="file" class="custom-file-input"
+                                                            value="">
+                                                        <label class="custom-file-label">Choose file</label>
+                                                        <img class="small_image mt-2 mb-3 image-selected" src="<%-data.previewimage%>">
+    
+                                                </div>
+    
+                                                </div>
+                                                <label class="col-lg-2 col-form-label">Pdf
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-4">
+                                                    <input name="pdffile" type="file" class="custom-file-input"
+                                                    value="<%-data.pdffile%>">
+                                                <label class="custom-file-label">Choose file</label>
+                                                <img class="small_image mt-2 mb-3 image-selected" src="<%-data.pdffile%>">
+    
+                                                </div>
+                                   
+    
+                                             
+                                            </div>
+    
+                                               
+                                            <div class="col-xl-12">
+                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8 ml-auto">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        function change() {
+            let store = $('#store').val()
+            
+            if (store == "Print") {
+                $('#storeprint').show()
+                $("#storetype").hide()
+
+            }else if(store == ""){
+                $('#storeprint').hide()
+                $("#storetype").hide()
+
+            }else{
+                $('#storeprint').hide()
+                $("#storetype").show()
+            }
+            // alert(store)
+            // console.log("readmore", store);
+        }
+
+
+        $(document).ready(function() {
+
+            let store = $('#store').val()
+            
+            if (store == "Print") {
+                $('#storeprint').show()
+                $("#storetype").hide()
+
+            }else if(store == ""){
+                $('#storeprint').hide()
+                $("#storetype").hide()
+
+            }else{
+                $('#storeprint').hide()
+                $("#storetype").show()
+            }
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                console.log(formData);
+
+                const resp = await asyncPost('/cms/investorrelations/edit', '', formData);
+
+                console.log(formData);
+
+                if (resp && resp.success) {
+                    alert('Investor Relation updated successfully');
+                    // window.location.href = window.location.href;
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+
+        });
+
+        
+    </script>
+</body>
+
+</html>

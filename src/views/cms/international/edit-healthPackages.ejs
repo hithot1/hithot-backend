@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit International Health Packages</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title" value="<%=data.title%>" placeholder="Enter title.." required>
+												        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label">Price
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="price" placeholder="Enter price..." value="<%=data.price%>" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="description" value="<%=data.description%>" required><%=data.description%></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Call Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="ihpCallImage" type="file" class="custom-file-input" value="<%=data.ihpCallImage%>">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.ihpCallImage%>" >
+                                                            <!-- <label>Recommended Size 59 * 63 </label> -->
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Call mage Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="ihpCallImageAlt" placeholder="Enter image alt..." value="<%=data.ihpCallImageAlt%>" required>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        // const appendHTML = `<div class="form-group row new-gallery">
+
+        //     <div class="col-lg-4">
+        //         <div class="col-lg-12 col-form-label">
+        //             <label class="select2-label">
+        //                 Speciality<span class="text-danger">*</span>
+        //             </label>
+        //         </div>
+        //         <div class="col-lg-12">
+        //             <select class="single-select select-post-type d-block" name="speciality" required>
+        //                 <% for (let speciality of speciality_data) { %>
+        //                     <option value="<%= speciality._id%>"><%= speciality.title%></option>
+        //                 <% } %>
+        //             </select>
+        //         </div>
+        //     </div>
+
+        //     <div class="col-lg-4">
+        //         <label class="col-lg-12 col-form-label">Country
+        //             <span class="text-danger">*</span>
+        //         </label>
+        //         <div class="col-lg-12">
+        //             <input type="text" class="form-control" name="country" placeholder="Enter country..." required>
+        //         </div>
+        //     </div>
+                                                        
+        //     <div class="col-lg-4">
+        //         <label class="col-lg-12 col-form-label">Cost
+        //             <span class="text-danger">*</span>
+        //         </label>
+        //         <div class="col-lg-12">
+        //             <input type="number" class="form-control" name="cost" placeholder="Enter cost..." required>
+        //         </div>
+        //     </div>
+
+        //     <div class="col-lg-2 mt--35">
+        //         <button class="btn btn-danger remove-row-package" type="button"><i class="fa fa-minus"></i></button>
+        //         <button class="btn btn-primary add-row-package" type="button"><i class="fa fa-plus"></i></button>
+        //     </div>
+        //     </div>`;
+
+        // $(document).on('click', '.add-row-package', function() {
+        // $('.customize_section').append(appendHTML);
+        // $('.summernote').summernote({
+        //     height: 150,
+        //     minHeight: null,
+        //     maxHeight: null,
+        //     focus: !1
+        // });
+        // });
+
+        // $(document).on('click', '.remove-row-package', function() {
+        //     $(this).parents('.new-gallery').remove();
+        // });
+
+        // let delete_package_rows = [];
+
+        // $(document).on('click', '.remove_package_row', function() {
+        //     delete_package_rows.push($(this).data('id'));
+        //     $(this).parents('.previous-package-row').remove();
+        // });
+        
+        $(document).ready(function() {
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+                // formData.append('delete_package_rows', delete_package_rows);
+
+                const resp = await asyncPost('/cms/international-health-package/edit','' ,formData); 
+                
+                if (resp.success) {
+                    alert('International Health Package updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

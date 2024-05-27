@@ -1,0 +1,11 @@
+node_modules/
+frontend/build/
+.env
+package-lock.json
+test_mail.js
+create_token.js
+public/externalUploads/
+public/uploads/Tiles-Somany/
+Upload
+list.txt
+UpLoad

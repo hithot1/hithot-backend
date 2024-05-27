@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-12 p-md-0">
+                        <div class="welcome-text d-flex">
+                            <h4>Manage PressRelease</h4>
+                            <a class="btn btn-primary position-absolute right--0" href="/cms/media/add">Add</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>title</th>
+                                                <th>Status</th>
+                                                <th>Category</th>
+                                                <th>Financial Year</th>
+                                                <th>Created At</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <% if (data && data.length) { 
+                                                    for (let tvc of data) {    
+                                            %>
+                                            <tr>
+                                                <td><a href="<%= tvc.previewimage%>" target="_blank"><img class="small_image mt-2 mb-3 image-selected" src="<%= tvc.previewimage%>" ></a></td>
+                                                <td><%= tvc.title%></td>
+                                                <td><%= tvc.status%></td>
+                                                
+                                                <td><%= tvc.category %></td>
+                                                <td><%= tvc.financial_year %></td>
+                                                <td><%=tvc.created_at%></td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="/cms/media/edit/<%= tvc._id%>">Edit</a>
+                                                    <button class="btn btn-danger remove_brand" data-id="<%= tvc._id%>">Delete</button>
+                                                </td>
+                                            </tr>
+
+                                            <% } } else { %>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        No Media Added.
+                                                    </td>
+                                                </tr>
+                                            <% } %>
+                                          
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th></th>
+                                                <th>title</th>
+
+                                                <th>Status</th>
+                                                <th>Cate</th>
+                                                <th>Financial Year</th>
+                                                <th>Created At</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+    
+    <script>
+        $(document).on('click', '.remove_brand', async function() {
+
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'})
+            .then(async (result) => {
+                if (result.isConfirmed) {
+
+                    const resp = await asyncDelete('/cms/media/remove', '/'+id);
+
+                    if (resp && resp.success) {
+                        Swal.fire({icon: "success", text: "Media deleted successfully"});
+                        $(this).parents('tr').remove();
+                        // window.location.href = window.location.href;
+                    } else {
+                        if (resp.message) {
+                            alert(resp.message);
+                        } else {
+                            alert(resp.error);
+                        }
+                    }
+                }
+            });
+
+        
+        });
+    </script>
+
+</body>
+
+</html>

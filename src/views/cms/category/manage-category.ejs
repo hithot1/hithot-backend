@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS  </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-12 p-md-0">
+                        <div class="welcome-text d-flex">
+                            <h4>Manage Category</h4>
+                            <a class="btn btn-primary position-absolute right--0" href="/cms/category/add">Add</a>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                
+                                                
+                                                
+                                                <th></th>
+                                                <th>Title</th>
+                                                <th>Slug</th>
+                                                <th>Category Reference</th>
+                                                <th>Category</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <% if (data && data.length) { 
+                                                    for (let category of data) {    
+                                            %>
+                                            <tr>
+                                                <td><a href="<%= category.thumbnailImage%>" target="_blank"><img class="small_image mt-2 mb-3 image-selected" src="<%= category.thumbnailImage%>" ></a></td>
+                                                
+                                                <td><%= category.categoryName%>  </td>
+                                                <td><%= category.slug%>  </td>
+                                                <td><% let categoryreflist = categoryref.filter(categoryref => (categoryref.value.includes(category.categoryRef))); for(let i=0; i < categoryreflist.length; i++){%><%=categoryreflist[i].label%>, <% } %>
+                                                  
+                                                </td>
+                                                <td><% if(category.parentCategory){ for(let i=0; i < category.parentCategory.length; i++){%><%=category.parentCategory[i].categoryName%>, <% } } %></td>
+                                                <% if (category.visibility) {%><td>Activated</td><%}else{%><td>Deactivated</td><%}%>
+
+                                                
+                                                <td><%= moment(category.updated_at).format('DD/MM/YYYY') %></td>
+                                                <td>
+                                                    <a class="btn btn-primary" href="/cms/category/edit/<%= category._id%>">Edit</a>
+                                                    <button class="btn btn-danger remove_category" data-id="<%= category._id%>">Delete</button>
+                                                </td>
+                                            </tr>
+
+                                            <% } } else { %>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        No Category Added.
+                                                    </td>
+                                                </tr>
+                                            <% } %>
+                                          
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th></th>
+                                                <th>Title</th>
+                                                <th>Slug</th>
+                                                <th>Category Reference</th>
+                                                <th>Category</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+    
+    <script>
+        $(document).on('click', '.remove_category', async function() {
+
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'})
+            .then(async (result) => {
+                if (result.isConfirmed) {
+
+                    const resp = await asyncDelete('/cms/category/remove', '/'+id);
+
+                    if (resp && resp.success) {
+                        Swal.fire({icon: "success", text: "Category deleted successfully"});
+                        $(this).parents('tr').remove();
+                        // window.location.href = window.location.href;
+                    } else {
+                        if (resp.message) {
+                            alert(resp.message);
+                        } else {
+                            alert(resp.error);
+                        }
+                    }
+                }
+            });
+
+        
+        });
+    </script>
+
+</body>
+
+</html>

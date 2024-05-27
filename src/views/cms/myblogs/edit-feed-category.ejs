@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit My Blogs #tag Information</h4>
+                                <a class="btn btn-primary position-absolute right--0" href="/cms/myblogs/feed/create-post?category_id=<%= data._id%>">Create Post</a>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="edit-form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hashtag Name
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="name" value="<%=data.name%>" placeholder="Enter title..." required>
+												        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Ad Banner Image <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="ad_banner_file" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose file</label>
+                                                            <img class="small_image mt-2 mb-3" src="<%= data.ad_banner_image_url%>" >
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label" >Ad Banner Alt Tag<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.ad_banner_alt%>' name="ad_banner_alt" placeholder="Enter thumbnail alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Ad Banner External Url <span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <div class="input-group mb-3">
+                                                            <input type="text" class="form-control" name="ad_banner_external_url" value="<%= data.ad_banner_external_url%>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Slug <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">neeleshmisra.com/blogfeed/</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="slug" value="<%=data.slug%>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+
+                                                    <label class="col-lg-2 col-form-label">Meta Keywords
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="meta_keywords" value="<%=data.meta_keywords%>" placeholder="Enter meta keywords...">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea name="meta_description" class="form-control" cols="30" rows="5"><%=data.meta_description%></textarea>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-8 ml-auto">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% if (data.posts && data.posts.length) {%>
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example" class="display" style="min-width: 845px">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>No. of Comments</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <% if (data.posts && data.posts.length) { 
+                                                for (let post of data.posts) {    
+                                        %>
+                                        <tr>
+                                            <td><%= post.title%></td>
+                                            <td><%= post.no_of_comments ? post.no_of_comments : 0%></td>
+                                            <td><%= moment(post.updated_at).format('DD/MM/YYYY') %></td>
+                                            <td>
+                                                <a class="btn btn-primary" href="/cms/myblogs/feed/edit-post/<%= post._id%>">Edit</a>
+                                                <button type="button" class="btn btn-danger delete_post" data-post-id="<%= post._id%>"><i class="fa fa-trash"></i></button>
+                                            </td>
+                                        </tr>
+
+                                        <% } } else { %>
+                                            <tr>
+                                                <td colspan="5">
+                                                    No Posts Exists.
+                                                </td>
+                                            </tr>
+                                        <% } %>
+                                      
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>No. of Comments</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/myblogs/feed/edit-category', '', formData);
+
+                if (resp && resp.success) {
+                    alert('Feed category updated successfully');
+                    window.location.href = window.location.href;
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+        });
+
+        $(document).on('click', '.delete_post', async function() {
+
+            let post_id = $(this).data('post-id');
+            
+            const resp = await asyncDelete('/cms/myblogs/feed/post', '/'+post_id);
+
+                if (resp && resp.success) {
+                    alert('Post deleted successfully');
+                    $(this).parents('tr').remove();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+        });
+
+        
+    </script>
+</body>
+
+</html>

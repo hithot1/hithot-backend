@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Citizen CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Update Quick Links</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.title%>' name="title" placeholder="Enter title...">
+												        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                    
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 1
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.title1%>' name="title1" placeholder="Enter title...">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 2
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.title2%>' name="title2" placeholder="Enter title...">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 3
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.title3%>' name="title3" placeholder="Enter title...">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 4
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.title4%>' name="title4" placeholder="Enter title...">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Link
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.link%>' name="link" placeholder="Enter Link...">
+												       
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Link 1
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.link1%>' name="link1" placeholder="Enter Link...">
+												       
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Link 2
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.link2%>' name="link2" placeholder="Enter Link...">
+												       
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Link 3
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.link3%>' name="link3" placeholder="Enter Link...">
+												       
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Link 4
+                                                        <span class="text-danger">*</span>
+
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" value='<%=data.link4%>' name="link4" placeholder="Enter Link...">
+												       
+                                                        
+                                                    </div>
+                                                </div>
+
+
+                                               
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Icon <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="image_file1" type="file" class="custom-file-input">
+                                                            <img class="small_image mt-2 mb-3" src="<%= data.image_file1%>" >
+                                                            <label class="custom-file-label">Choose file</label>
+                                                            <label>Recommended Size 37 * 36 </label>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <label class="col-lg-1 col-form-label" >Alt Tag<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" value='<%=data.thumbnail_alt%>' name="thumbnail_alt" placeholder="Enter alt.">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Icon 2 <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="image_file2" type="file" class="custom-file-input">
+                                                            <img class="small_image mt-2 mb-3" src="<%= data.image_file2%>" >
+                                                            <label class="custom-file-label">Choose file</label>
+                                                            <label>Recommended Size 37 * 36 </label>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <label class="col-lg-1 col-form-label" >Alt Tag<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" value='<%=data.thumbnail_alt1%>' name="thumbnail_alt1" placeholder="Enter alt.">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Icon 3 <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="image_file3" type="file" class="custom-file-input">
+                                                            <img class="small_image mt-2 mb-3" src="<%= data.image_file3%>" >
+                                                            <label class="custom-file-label">Choose file</label>
+                                                            <label>Recommended Size 37 * 36 </label>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <label class="col-lg-1 col-form-label" >Alt Tag<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" value='<%=data.thumbnail_alt2%>' name="thumbnail_alt2" placeholder="Enter alt.">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Icon 4 <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="image_file4" type="file" class="custom-file-input">
+                                                            <img class="small_image mt-2 mb-3" src="<%= data.image_file4%>" >
+                                                            <label class="custom-file-label">Choose file</label>
+                                                            <label>Recommended Size 37 * 36 </label>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <label class="col-lg-1 col-form-label" >Alt Tag<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" value='<%=data.thumbnail_alt3%>' name="thumbnail_alt3" placeholder="Enter alt.">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Icon 5 <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="image_file5" type="file" class="custom-file-input">
+                                                            <img class="small_image mt-2 mb-3" src="<%= data.image_file5%>" >
+                                                            <label class="custom-file-label">Choose file</label>
+                                                            <label>Recommended Size 37 * 36 </label>
+                                                        </div>
+                                                    </div>
+
+                                                    
+
+                                                    <label class="col-lg-1 col-form-label" >Alt Tag<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" value='<%=data.thumbnail_alt4%>' name="thumbnail_alt4" placeholder="Enter alt.">
+                                                    </div>
+                                                </div>
+
+                                              
+                                                
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+            console.log("before if");
+
+            if (is_form_valid) {
+            console.log("after if");
+
+                let formData = new FormData(document.querySelector('#cms_form'));
+                const resp = await asyncPost('/cms/quick_links/general','' ,formData);               
+            console.log("after post method");
+                
+                if (resp.success) {
+                    alert('Links Updated Successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

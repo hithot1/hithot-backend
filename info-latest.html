@@ -1,0 +1,917 @@
+<style>
+    .heading-container {
+      font-size: var(--arrow-fs-xxl);
+      color: var(--dark-blue);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--arrow-c-invert-mono4);
+  margin-bottom:20px;
+    }
+  
+    .wrapper {
+      max-width: var(--wrapper-width);
+      margin: 0 auto;
+      padding: 12px;
+      font-family: var(--arrow-typeface-primary);
+  margin-bottom: 40px;
+    }
+  
+    .image-email-details {
+      display: grid;
+      grid-template-columns: 1fr;
+      margin: 24px auto;
+  
+    }
+  
+    @media screen and (min-width: 992px) {
+      
+      .heading-container,
+      .image-email-details{
+        
+        margin: 24px auto;
+  
+      }
+      .wrapper {
+        padding-left: 8px;
+      }
+  
+      .image-email-details {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  
+      .flex-item-left {
+        flex: 12%;
+        margin: 10px;
+  margin-left:0px;
+        font-size: 30px;
+        box-shadow: 2px -1px 20px 1px #bfbaba73;
+        border-radius: 5px;
+      }
+  
+      .flex-item-right {
+        flex: 12%;
+        margin: 10px;
+  margin-right:0px;
+        font-size: 30px;
+        box-shadow: 2px -1px 20px 1px #bfbaba73;
+        border-radius: 5px;
+      }
+  
+      .main-section {
+        width: 100%;
+        float: left;
+      }
+  
+      .grievance-top {
+        margin: 0px 9%;
+      }
+  
+      ul.breadcrumb {
+        padding: 10px 16px;
+        list-style: none;
+      }
+  
+      ul.breadcrumb li {
+        display: inline;
+        font-size: 16px;
+        font-family: monospace;
+      }
+  
+      ul.breadcrumb li+li:before {
+        padding: 0px;
+        color: #636363;
+        content: "›";
+        font-size: 25px;
+        position: absolute;
+        top: 27px;
+        font-weight: 400;
+        margin-left: -6px;
+      }
+  
+      ul.breadcrumb li a {
+        color: #636363;
+        text-decoration: none;
+        padding: 0px 10px;
+        font-family: Noto Sans, sans-serif;
+      }
+  
+      ul.breadcrumb li a:hover {
+        color: #01447e;
+        text-decoration: none;
+      }
+  
+      /* author css */
+      .card {
+        padding: 20px 35px;
+      }
+  
+      .image-box {
+        display: flex;
+      }
+  
+      .heading-text {
+        line-height: .5;
+        margin-left: 18px;
+        text-align: start;
+        border-left: 1px solid #e46d1559;
+      }
+  .img01{
+  width:100px;
+  height:100px;
+  }
+  .img01 img{width:100%;height: 100px;
+    border-radius: 100px;}
+      .heading-text h2 {
+  line-height: 17px;
+  margin-top: 5px;
+        font-size: 20px;
+        color: #000000;
+        font-family: 'Noto Sans', sans-serif;
+        margin-left: 20px;
+        margin-bottom:20px;
+  font-weight:bold;
+      }
+  .main-row{width:100%; display:flex}
+      .heading-text p {
+        font-size: 16px;
+        color: #767070;
+        font-family: 'Noto Sans', sans-serif;
+        margin-left: 20px;
+        font-weight: 500;
+        line-height: .5;
+        margin-bottom:30px;
+      }
+  
+      .social-icons {
+        margin: 0px 0 0 12px;
+      }
+  @media screen and (max-width: 820px) {
+  .card {
+    padding: 20px 20px;
+  }
+  }
+  @media screen and (max-width: 820px) {
+  .card {
+    padding: 20px 10px;
+  }
+  }
+      @media screen and (max-width: 600px) {
+        .flex-container {
+          width: 100% ! important;
+        }
+  
+        .heading-text h2 {
+          font-size: 17px;
+        }
+  
+        .heading-text p {
+          font-size: 12px;
+        }
+  .main-row {
+    width: 100%;
+    display: contents;
+  }
+  .flex-item-left{margin-left:10px;}
+  .flex-item-right{margin-right:10px;}
+  .card {
+    padding: 20px 20px;
+  }
+      }
+  @media screen and (max-width: 360px) {
+  .img01 {
+    width: 80px;
+    height: 80px;
+  }
+  }
+      @media screen and (max-width: 320px) {
+        .heading-text h2 {
+          font-size: 11px;
+        }
+  
+        .heading-text p {
+          font-size: 8px;
+        }
+  
+        .heading-text {
+          margin-left: 9px;
+        }
+      }
+  </style>
+  <div class="wrapper">
+    <div class="heading-container">
+      <h1>All Authors</h1>
+    </div>
+   <div class="flex-container">
+      <div class="main-row">
+            <div class="flex-item-left">
+              <div class="card">
+                <div class="image-box">
+                  <div class="img01">
+                    <img src="/author-images/mithilesh-jha.jpg" alt="name-row">
+                  </div>
+                  <div class="heading-text">
+                    <a href="/author/mithilesh-jha">
+                    <h2>Mithilesh Jha</h2>
+                    </a>
+                    <p>Chief Content Writer</p>
+                    <div class="social-icons">
+                      <a href="https://www.facebook.com/mithilesh.journalist" target="_blank" rel="noopener noreferrer">
+                        <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                      </a>
+                      <a href="https://twitter.com/Mithilesh_Jha1" target="_blank" rel="noopener noreferrer">
+                        <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                      </a>
+                      <a href="https://www.instagram.com/mithilesh_jha123/" target="_blank" rel="noopener noreferrer">
+                        <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-item-right">
+              <div class="card">
+                <div class="image-box">
+                  <div class="img01">
+                    <img src="/author-images/amit-yadav.jpg" alt="name-row">
+                  </div>
+                  <div class="heading-text">
+                    <a href="/author/amit-yadav">
+                    <h2>Amit Yadav</h2>
+                  </a>
+                    <p>Asst. Editor</p>
+                    <div class="social-icons">
+                      <a href="https://www.facebook.com/profile.php?id=100000984426094" target="_blank" rel="noopener noreferrer">
+                        <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                      </a>
+                      <a href="https://twitter.com/amityadav26" target="_blank" rel="noopener noreferrer">
+                        <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                      </a>
+                      <a href="instagram.com/amityadavjournalist" target="_blank" rel="noopener noreferrer">
+                        <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/shaurya-punj.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/ashish-jha">
+                <h2>Ashish Jha</h2>
+              </a>
+                <p>Senior Sub-Editor</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/shaurya-punj.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/shaurya-punj">
+                <h2>Shaurya Punj</h2>
+              </a>
+                <p>Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="https://fea.assettype.com/prabhatkhabar/assets/user-80a26bea4fa71c3212ef.svg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/anita-tanvi">
+                <h2>Anita Tanvi</h2>
+              </a>
+                <p>Senior Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://twitter.com/anitatanvi1?t=P-CsQ9zRvdLICXEYm6Yx2Q&s=08" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="https://fea.assettype.com/prabhatkhabar/assets/user-80a26bea4fa71c3212ef.svg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/pritish-sahay">
+                <h2>Pritish Sahay</h2>
+              </a>
+                <p>Senior Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="https://fea.assettype.com/prabhatkhabar/assets/user-80a26bea4fa71c3212ef.svg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/piyush-pandey">
+                <h2>Piyush Pandey</h2>
+              </a>
+                <p>Trainee Journalist</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="https://fea.assettype.com/prabhatkhabar/assets/user-80a26bea4fa71c3212ef.svg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/samir-kumar">
+                <h2>Samir Kumar</h2>
+              </a>
+                <p>Sr. Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/budhmani.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/budhmani-minj">
+                <h2>Budhmani Minj</h2>
+              </a>
+                <p>Senior Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://www.instagram.com/budhmani.minj/" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/neeraj-tiwari.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/neeraj-express">
+                <h2>Neeraj Tiwari</h2>
+              </a>
+                <p>Senior Content Creator</p>
+                <div class="social-icons">
+                  <a href="https://www.facebook.com/neeraj.tiwari.710/" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://twitter.com/OMG_neeraj" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://www.instagram.com/neerajtiwari4u/" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/amlesh-nandan-sinha.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/amleshnandan-sinha">
+                <h2>Amlesh Nandan Sinha</h2>
+              </a>
+                <p>Sr. Content writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="https://fea.assettype.com/prabhatkhabar/assets/user-80a26bea4fa71c3212ef.svg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/amleshnandan-sinha">
+                  <a href="/author/kumarvishwat-sen">
+                <h2>Kumar Vishwatsen</h2>
+              </a>
+              </a>
+                <p>Dy. Chief Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="https://fea.assettype.com/prabhatkhabar/assets/user-80a26bea4fa71c3212ef.svg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                  <a href="/author/saurabh-poddar-2">
+                <h2>Saurabh Poddar</h2>
+              </a>
+                <p>Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" alt="Instagram" loading="lazy" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/guru-swarup-mishra.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                  <a href="/author/guruswarup-mishra">
+                <h2>Guru Swarup Mishra</h2>
+              </a>
+                <p>Copy Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" alt="Instagram" loading="lazy" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/ashish-lata.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                  <a href="/author/ashish-lata">
+                <h2>Ashish Lata</h2>
+              </a>
+                <p>Senior Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://www.instagram.com/asishlata/" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" alt="Instagram" loading="lazy" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/samir-ranjan.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                  <a href="/author/samir-ranjan">
+                <h2>Samir Ranjan</h2>
+              </a>
+                <p>Deputy Chief Copy Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" alt="Instagram" loading="lazy" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/rahul-guru.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                  <a href="/author/rahul-kumar-guru">
+                <h2>Rahul Kumar Guru</h2>
+              </a>
+                <p>Senior Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" alt="Instagram" loading="lazy" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="https://fea.assettype.com/prabhatkhabar/assets/user-80a26bea4fa71c3212ef.svg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                  <a href="/author/sameer-oraon">
+                <h2>Sameer Oraon</h2>
+              </a>
+                <p>Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://twitter.com/anitatanvi1?t=P-CsQ9zRvdLICXEYm6Yx2Q&s=08" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" alt="Instagram" loading="lazy" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/divya-keshri.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                
+                  <a href="/author/divya-keshri">
+                <h2>Divya Keshri</h2>
+              </a>
+                <p>Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://mobile.twitter.com/divyakeshri" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://www.instagram.com/divyakeshri9/?hl=en" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" alt="Instagram" loading="lazy" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/pankaj-pathak.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                
+                  <a href="/author/pankajkumar-pathak">
+                <h2>Pankaj Kumar Pathak</h2>
+              </a>
+                <p>Senior Content Writer</p>
+                <div class="social-icons">
+                  <a href="https://www.facebook.com/itspankajpathak " target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://twitter.com/pankajjust4you" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/rajeev-kumar.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                
+                  <a href="/author/rajeev-kumar">
+                <h2>Rajeev Kumar</h2>
+              </a>
+                <p>Senior Content Writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://twitter.com/rajeev_choubey" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/rajat-kumar.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/arbindkumar-mishra">
+                  <a href="/author/rajat-kumar">
+                <h2>Rajat Kumar</h2>
+              </a>
+              </a>
+                <p>Content Writer</p>
+                <div class="social-icons">
+                  <a href="https://www.facebook.com/RAJAT031" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://twitter.com/RajatKu96119686" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href=" instagram.com/aawara_msiha25394" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/rajneesh-anand.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/rajneesh-anand">
+                <h2>Rajneesh Anand</h2>
+              </a>
+                <p>Sr. Chief Content Writer</p>
+                <div class="social-icons">
+                  <a href="https://www.facebook.com/rajneeshanandakc.anand" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="https://twitter.com/rajneeshanandt" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item-right">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/arbind-mishra.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/arbindkumar-mishra">
+                <h2>Arbind Mishra</h2>
+              </a>
+                <p>Sr. Content writer</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="main-row">
+        <div class="flex-item-left">
+          <div class="card">
+            <div class="image-box">
+              <div class="img01">
+                <img src="/author-images/rajesh-ojha.jpg" alt="name-row">
+              </div>
+              <div class="heading-text">
+                <a href="/author/rajeshkumar-ojha">
+                <h2>Rajesh Ojha</h2>
+              </a>
+                <p>Bihar Head</p>
+                <div class="social-icons">
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/facebook-af1816335f381549a9f1.svg" alt="facebook" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/twitter-722831a449f329ced5dc.svg" alt="Twitter" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer">
+                    <img width="25px" height="24px" src="https://fea.assettype.com/prabhatkhabar/assets/instagram-72d1bbe7a251e7b6c666.svg" alt="Instagram" loading="lazy" class="gm-observing gm-observing-cb">
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+  
+  
+  </div>
+   
+  </div>
+  

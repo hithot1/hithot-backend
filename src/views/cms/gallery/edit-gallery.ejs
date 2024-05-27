@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS  </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Gallery</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Gallery Image Tag
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="galleryImageTag" value="<%=data.galleryImageTag%>" placeholder="Enter gallery tag..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Slug URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" value="<%=data.slug%>" placeholder="Enter slug..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="customize_section-misc">
+                                                    <% for (let gallery of data.galleryImagesData) { %>
+                                                    <div class="form-group row new-gallery previous-misc-row">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Gallery Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <img class="small_image mt-2 mb-3 image-selected" src="<%= gallery.galleryImage%>" >
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Gallery Image Alt
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <input type="text" class="form-control" name="galleryImageAlt" value="<%= gallery.galleryImageAlt%>" placeholder="Enter gallery image alt..." required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 remove_misc_row" data-id="<%= gallery._id%>" type="button"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+
+                                                    <div class="row">
+                                                        <div class="col-8">
+                                                        </div>
+                                                        <div class="col-4 add-btns">
+                                                            <button type="button" class="btn btn-primary add_misc_row"> Add</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        const appendMiscHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Gallery Image
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="galleryImage" type="file" class="custom-file-input" required>
+                        <label class="custom-file-label">Choose Image file</label>
+                        <label>Recommended Size 370 * 250 </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Gallery Image Alt
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input type="text" class="form-control" name="galleryImageAlt" placeholder="Enter gallery image alt..." required>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove_row-misc" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add_misc_row" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+
+        $(document).on('click', '.add_misc_row', function() {
+            $('.customize_section-misc').append(appendMiscHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove_row-misc', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        let delete_gallery_rows = [];
+
+        $(document).on('click', '.remove_misc_row', function() {
+            delete_gallery_rows.push($(this).data('id'));
+            $(this).parents('.previous-misc-row').remove();
+        });
+        
+        $(document).ready(function() {
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+                formData.append('delete_gallery_rows', delete_gallery_rows);
+
+                const resp = await asyncPost('/cms/gallery/edit','' ,formData); 
+                
+                if (resp.success) {
+                    alert('Gallery updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

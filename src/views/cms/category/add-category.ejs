@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS  </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Add Category</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Category Name
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="categoryName" placeholder="Enter Category Name..." required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Parent Category
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="parentCategory[]" id="parentCategory" class="form-control select-tag select-tag-parentCategory multi-select" multiple="multiple">
+                                                        <option value=""><-- Root category --></option>
+                                                        <% for (let parentCategory of parent_categories) { %>
+                                                            <option value="<%= parentCategory._id%>"><%= parentCategory.categoryName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Visibility
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=true
+                                                                name="visibility" id="enable">Enable
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=false
+                                                            name="visibility" id="disable">Disable
+                                                        </label>
+                                                    </div>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">In Menu
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=true
+                                                                name="inMenu" id="enablemenu" checked>Enable In Menu
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" value=false
+                                                            name="inMenu" id="disablemenu">Disable In Menu
+                                                        </label>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Short Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="shortDescription"></textarea>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Long Description
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="longDescription"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 2
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title2" placeholder="Enter Title...">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Description 2
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="description2"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 3
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title3" placeholder="Enter Title...">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Description 3
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control summernote" rows="4" id="comment" name="description3"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Title
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaTitle" placeholder="Enter meta title...">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Meta Description
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <textarea class="form-control" rows="4" id="comment" name="metaDescription"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Meta Keyword
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="metaKeyword" placeholder="Enter meta keyword...">
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Slug
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" placeholder="Enter slug..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Thumbnail Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="thumbnailImage" type="file" class="custom-file-input" >
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <!-- <label>Recommended Size 472 * 412</label> -->
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Thumbnail Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="thumbnailImageAlt" placeholder="Enter thumbnail image alt..." >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Mobile Thumbnail Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="mobileThumbnailImage" type="file" class="custom-file-input" >
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <!-- <label>Recommended Size 472 * 412</label> -->
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Mobile Thumbnail Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="mobileThumbnailImageAlt" placeholder="Enter mobile Thumbnail image alt..." >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Icon
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="icon" type="file" class="custom-file-input" >
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <!-- <label>Recommended Size 472 * 412</label> -->
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Icon Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="iconAlt" placeholder="Enter icon alt..." >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label" >Banner Title<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="bannerTitle" placeholder="Enter banner title..." >
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Category Reference
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="categoryRef[]" id="categoryRef" class="form-control select-tag select-tag-categoryRef multi-select doctor-categoryRef" multiple="multiple" required>
+                                                        <% for (let category of category_data) { %>
+                                                            <option value="<%= category.value%>"><%= category.label%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Brand Logo
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="brandLogo" class="single-select select-post-type d-block" >
+                                                        <% for (let brand of brand_data) { %>
+                                                            <option value="<%= brand._id%>"><%= brand.brandName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Slider
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="slider" class="single-select select-post-type d-block" >
+                                                        <% for (let slider of slider_data) { %>
+                                                            <option value="<%= slider._id%>"><%= slider.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">FAQs
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="faqs[]" id="faqs" class="form-control select-tag select-tag-faqs multi-select doctor-faqs" multiple="multiple" >
+                                                        <% for (let faq of faq_data) { %>
+                                                            <option value="<%= faq._id%>"><%= faq.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label" >Slider Title<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="sliderTitle" placeholder="Enter slider title..." >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title 4
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="title4" placeholder="Enter title..." >
+                                                    </div>
+
+                                                    <label class="col-lg-2 col-form-label">Slider 2
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="slider2" class="single-select select-post-type d-block" >
+                                                        <% for (let slider of slider_data) { %>
+                                                            <option value="<%= slider._id%>"><%= slider.title%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Category To Show
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                    <select name="categoryToShow[]" id="categoryToShow" class="form-control select-tag select-tag-categoryToShow multi-select" multiple="multiple">
+                                                        <% for (let categoryToShow of parent_categories) { %>
+                                                            <option value="<%= categoryToShow._id%>"><%= categoryToShow.categoryName%></option>
+                                                        <% } %>
+    
+                                                    </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="customize_section-misc">
+                                                    <div class="form-group row new-gallery">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Banner Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <input name="bannerImage" type="file" class="custom-file-input">
+                                                                    <label class="custom-file-label">Choose Image file</label>
+                                                                    <!-- <label>Recommended Size 153 * 53</label> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Mobile Image
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <input name="mobileImage" type="file" class="custom-file-input">
+                                                                    <label class="custom-file-label">Choose Image file</label>
+                                                                    <!-- <label>Recommended Size 153 * 53</label> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Banner Image Alt
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <input type="text" class="form-control" name="bannerImageAlt" placeholder="Enter banner image alt...">
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 add_row-misc" type="button"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+        const appendMiscHTML = `<div class="form-group row new-gallery">
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Banner Image
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="bannerImage" type="file" class="custom-file-input">
+                        <label class="custom-file-label">Choose Image file</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Mobile Image
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <div class="custom-file">
+                        <input name="mobileImage" type="file" class="custom-file-input">
+                        <label class="custom-file-label">Choose Image file</label>
+                        <!-- <label>Recommended Size 153 * 53</label> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <label class="col-lg-12 col-form-label">Banner Image Alt
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-12">
+                    <input type="text" class="form-control" name="bannerImageAlt" placeholder="Enter banner image alt...">
+                </div>
+            </div>
+
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove_row-misc" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add_row-misc" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+
+        $(document).on('click', '.add_row-misc', function() {
+            $('.customize_section-misc').append(appendMiscHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove_row-misc', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+        
+        $(document).ready(function() {
+
+            $('#enable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("disable").checked = false;
+                }
+            });
+
+            $('#disable').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("enable").checked = false;
+                }
+            });
+
+            $('#enablemenu').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("disablemenu").checked = false;
+                }
+            });
+
+            $('#disablemenu').change(function() {
+                if ($(this).is(":checked")) {
+                    document.getElementById("enablemenu").checked = false;
+                }
+            });
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/category/add','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Category created successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

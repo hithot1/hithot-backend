@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Edit Setting</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2 col-form-label">
+                                                        <label class="select2-label">
+                                                            Hospital Name<span class="text-danger">*</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <select class="single-select select-post-type d-block hospital-name" name="hospitalName" value="<%=data.hospitalName%>" required>
+                                                            <% for (let hospital of hospital_data) { %>
+                                                                <option value="<%= hospital._id%>"><%= hospital.hospitalName%></option>
+                                                            <% } %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hospital Address
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="hospitalAddress" placeholder="Enter hospital address..." value="<%=data.hospitalAddress%>" required>
+                                                        <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+												        <input name='_id' value='<%=data._id%>' style="display:none;">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hospital Map
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="hospitalMap" placeholder="Enter hospital map..." value="<%=data.hospitalMap%>" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hospital Pincode
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="number" class="form-control" name="hospitalPincode" placeholder="Enter hospital pincode..." value="<%=data.hospitalPincode%>" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Hospital Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="hospitalImage" type="file" class="custom-file-input">
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= data.hospitalImage%>" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Direction URL
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="directionURL" placeholder="Enter direction URL..." value="<%=data.directionURL%>">
+                                                    </div>
+                                                </div>
+
+                                                <div class="customize_section">
+                                                    <% let i = 0; for (let contact of data.hospitalContact) { %>
+                                                    
+                                                    <div class="form-group row new-gallery">
+
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Hospital Email
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <% if (i > 0) {%><input type="text" class="form-control" name="hospitalEmail" placeholder="Enter hospital email..." readonly value="<%=contact.hospitalEmail%>" required><% } else{%>
+                                                                    <input type="text" class="form-control" name="hospitalEmail" placeholder="Enter hospital email..." value="<%=contact.hospitalEmail%>" required><%}%>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Hospital Mobile Number
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <% if (i > 0) {%><input type="number" class="form-control" name="hospitalMobileNumber" readonly placeholder="Enter hospital mobile number..." value="<%=contact.hospitalMobileNumber%>" required><% } else{%>
+                                                                    <input type="number" class="form-control" name="hospitalMobileNumber" placeholder="Enter hospital mobile number..." value="<%=contact.hospitalMobileNumber%>" required><%}%>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <div class="col-lg-12 col-form-label">
+                                                                <label class="select2-label">
+                                                                    Type<span class="text-danger">*</span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-lg-12">
+                                                                <% if (i > 0) {%><select class="single-select select-post-type d-block" readonly name="hospitalDropDown" value="<%=contact.hospitalDropDown%>" required><% } else{%><select class="single-select select-post-type d-block" name="hospitalDropDown" value="<%=contact.hospitalDropDown%>" required><%}%>
+                                                                    <% if (contact.hospitalDropDown === "form") {%><option value="form" selected>Form</option><% } else{%><option value="form">Form</option><%}%>
+                                                                    <% if (contact.hospitalDropDown === "primary") {%><option value="primary" selected>Primary</option><% } else{%><option value="primary">Primary</option><%}%>
+                                                                    <% if (contact.hospitalDropDown === "other") {%><option value="other" selected>Other</option><% } else{%><option value="other">Other</option><%}%>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-2 mt--35">
+                                                            <% if (i > 0) {%><button class="btn btn-danger remove_row" type="button"><i class="fa fa-minus"></i></button></button><% }%>
+                                                            <button class="btn btn-primary add_row" type="button"><i class="fa fa-plus"></i></button>
+
+                                                        </div>
+                                                    </div>
+                                                    <% i++; } %>
+                                                </div>
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        const appendHTML = `<div class="form-group row new-gallery">
+
+        <div class="col-lg-4">
+            <label class="col-lg-12 col-form-label">Hospital Email
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-12">
+                <input type="text" class="form-control" name="hospitalEmail" placeholder="Enter hospital email..." required>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <label class="col-lg-12 col-form-label">Hospital Mobile Number
+                <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-12">
+                <input type="number" class="form-control" name="hospitalMobileNumber" placeholder="Enter hospital mobile number..." required>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="col-lg-12 col-form-label">
+                <label class="select2-label">
+                    Type<span class="text-danger">*</span>
+                </label>
+            </div>
+            <div class="col-lg-12">
+                <select class="single-select select-post-type d-block" name="hospitalDropDown" required>
+                    <option value="form" selected>Form</option>
+                    <option value="primary">Primary</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="col-lg-2 mt--35">
+            <button class="btn btn-danger remove_row" type="button"><i class="fa fa-minus"></i></button>
+            <button class="btn btn-primary add_row" type="button"><i class="fa fa-plus"></i></button>
+        </div>
+        </div>`;
+        
+        $(document).on('click', '.add_row', function() {
+        $('.customize_section').append(appendHTML);
+        $('.summernote').summernote({
+            height: 150,
+            minHeight: null,
+            maxHeight: null,
+            focus: !1
+        });
+        });
+        
+        $(document).on('click', '.remove_row', function() {
+        $(this).parents('.new-gallery').remove();
+        });
+        
+        $(document).ready(function() {
+            $('.hospital-name').val(<%- JSON.stringify(data.hospitalName)%>).trigger('change');
+        });
+        $(document).on('click', '#submit-form', async function() {
+            const is_form_valid = $("#cms_form").valid();
+
+            if (is_form_valid) {
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/settings/edit','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Setting updated successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+
+        
+    </script>
+</body>
+
+</html>

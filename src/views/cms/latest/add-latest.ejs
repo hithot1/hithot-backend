@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.png">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Add Latest Update</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Title
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control"
+                                                        name="title"
+                                                        placeholder="Enter title...">
+                                                    <input name='_csrf' value='<%=_csrf%>' id="csrf"
+                                                        style="display:none;">                                                                                                 
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Image
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <div class="custom-file">
+                                                            <input name="bannerImage" type="file" class="custom-file-input" required>
+                                                            <label class="custom-file-label">Choose Image file</label>
+                                                            <label>Recommended Size 1600 * 553 </label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-lg-2 col-form-label" >Image Alt<span
+                                                        class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="bannerImageAlt" placeholder="Enter image alt..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Slug URL
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="text" class="form-control" name="slug" placeholder="Enter slug..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row"> 
+                                                    <label class="col-lg-2 col-form-label">Date
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-4">
+                                                        <input type="date" class="form-control" name="date" placeholder="Enter date..." required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label"> Description
+                                                        <span class="text-danger"></span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <textarea class="form-control summernote" rows="4" name="description" placeholder="description"></textarea>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="customize_section-misc">
+                                                    <div class="form-group row new-gallery">
+    
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Image
+                                                                <span class="text-danger"></span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <div class="custom-file">
+                                                                    <input name="partnerIcon" type="file" class="custom-file-input">
+                                                                    <label class="custom-file-label">Choose Image file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+    
+                                                        <div class="col-lg-4">
+                                                            <label class="col-lg-12 col-form-label">Image Alt
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-12">
+                                                                <input type="text" class="form-control" name="partnerIconAlt" placeholder="Enter image alt...">
+                                                            </div>
+                                                        </div>
+                                     
+                                                        <div class="col-lg-2 mt--35">
+                                                            <button class="btn btn-primary ml--40 add_row-misc" type="button"><i class="fa fa-plus"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                              
+
+
+
+                                            <div class="col-xl-12">                                                
+                                                <div class="form-group row">
+                                                    <div class="col-lg-2">
+                                                    </div>
+                                                    <div class="col-lg-10">
+                                                        <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+
+ const appendMiscHTML = `<div class="form-group row new-gallery">
+
+<div class="col-lg-4">
+    <label class="col-lg-12 col-form-label">Image
+        <span class="text-danger">*</span>
+    </label>
+    <div class="col-lg-12">
+        <div class="custom-file">
+            <input name="partnerIcon" type="file" class="custom-file-input" required>
+            <label class="custom-file-label">Choose Image file</label>
+        </div>
+    </div>
+</div>
+
+    <div class="col-lg-4">
+        <label class="col-lg-12 col-form-label">Image Alt
+            <span class="text-danger">*</span>
+        </label>
+        <div class="col-lg-12">
+            <input type="text" class="form-control" name="partnerIconAlt" placeholder="Enter image alt...">
+        </div>
+    </div>
+
+
+
+<div class="col-lg-2 mt--35">
+<button class="btn btn-danger remove_row-misc" type="button"><i class="fa fa-minus"></i></button>
+<button class="btn btn-primary add_row-misc" type="button"><i class="fa fa-plus"></i></button>
+</div>
+</div>`;
+            
+    
+
+     
+
+        $(document).on('click', '.remove_row', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+
+        $(document).on('click', '.add_row-misc', function() {
+            $('.customize_section-misc').append(appendMiscHTML);
+            $('.summernote').summernote({
+                height: 150,
+                minHeight: null,
+                maxHeight: null,
+                focus: !1
+            });
+        });
+
+        $(document).on('click', '.remove_row-misc', function() {
+            $(this).parents('.new-gallery').remove();
+        });
+        
+        $(document).ready(function() {
+
+        });
+        $(document).on('click', '#submit-form', async function() {
+
+           
+             const is_form_valid = $("#cms_form").valid();
+            
+
+             if (is_form_valid) {
+               
+                let formData = new FormData(document.querySelector('#cms_form'));
+
+                const resp = await asyncPost('/cms/latest/add','' ,formData);               
+                
+                if (resp.success) {
+                    alert('Latest Updated Created Successfully');
+                    location.reload();
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+
+            
+        });
+    </script>
+</body>
+
+</html>

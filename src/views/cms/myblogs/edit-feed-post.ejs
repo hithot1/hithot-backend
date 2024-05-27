@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+       <!--**********************************
+            Content body start
+        ***********************************-->
+       <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                <div class="row">
+                  
+                    <div class="col-lg-12">
+                        <form class="form-valide" method="post" enctype="multipart/form-data" id="cms_form">
+                            <div class="card">
+
+                                <div class="card-header">
+                                    <h4 class="card-title">Choose Hashtag</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="basic-form">
+                                    
+                                            <div class="form-group">
+                                                <div>
+                                                   
+                                                <select name="category_id[]" class="form-control select-tag multi-select" multiple="multiple" required>
+                                                    <% for (let category of category_data) { %>
+                                                       
+                                                        <option value="<%= category._id%>"  <% if (category._id == post_data.category_id) { %> selected  <% } %> ><%= category.name%></option>
+                                                       
+                                                    <% } %>
+
+                                                </select>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Create Post</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-validation">
+                                        
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-form-label">Title
+                                                            <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-4">
+                                                            <input type="text" class="form-control" name="title" value="<%= post_data.title%>" placeholder="Enter title..." required>
+                                                            <input name='_csrf' value='<%=_csrf%>' id="csrf" style="display:none;">
+                                                            <input name='_id' value='<%=post_data._id%>' style="display:none;">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-2 col-form-label">
+                                                            <label class="mb-4 select2-label">
+                                                                Post Type<span class="text-danger">*</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <select class="single-select select-post-type d-block" name="type" required>
+                                                                <option value="image" selected>Image</option>
+                                                                <option value="audio">Audio</option>
+                                                                <option value="video">Video</option>
+                                                                <option value="external">External Url</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="show-image post-content-type <%= post_data.type =='video' ? 'hide-element' : ''%>">
+                                                        <div class="form-group row">
+                                                                <label class="col-lg-2 col-form-label">Image <span
+                                                                    class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-4">
+                                                                    <div class="custom-file">
+                                                                        <input name="image" type="file" class="custom-file-input">
+                                                                        <label class="custom-file-label">Choose image</label>
+                                                                        <% if (post_data.image_url && post_data.image_url.length) { %>
+                                                                            <img class="small_image mt-2 mb-3 image-selected" src="<%= post_data.image_url%>" >
+                                                                        <% } %>
+                                                                    </div>
+                                                                </div>
+
+                                                                <label class="col-lg-2 col-form-label" >Image Alt Tag<span
+                                                                    class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-4">
+                                                                    <input type="text" class="form-control" name="image_alt" value="<%= post_data.image_alt%>" placeholder="Enter image alt..." required>
+                                                                </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="show-video postModel post-content-type <%= post_data.type !='video' ? 'hide-element' : ''%>">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-2 col-form-label">Video<span
+                                                                class="text-danger">*</span>
+                                                            </label>
+                                                            <div class="col-lg-4">
+                                                                <div class="custom-file">
+                                                                    <input name="video" type="file" class="custom-file-input">
+                                                                    <label class="custom-file-label">Choose video file</label>
+
+                                                                    <% if (post_data.video_url && post_data.video_url.length) { %>
+                                                                        <a href="<%= post_data.video_url%>" class="video-selected" target="_blank">View/Download Video File</a>
+                                                                    <% } %>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="show-external postModel post-content-type <%= post_data.type !='external_url' ? 'hide-element' : ''%>">
+                                                        <div class="form-group row ">
+                                                        <label class="col-lg-2 col-form-label">External Url <span class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-10">
+                                                            <div class="input-group mb-3">
+                                                                <input type="text" class="form-control" value="<%= post_data.external_url%>" name="external_url" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="postModel show-audio post-content-type <%= post_data.type !='audio' ? 'hide-element' : ''%>">
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-form-label">Audio<span
+                                                            class="text-danger">*</span>
+                                                        </label>
+                                                        <div class="col-lg-4">
+                                                            <div class="custom-file">
+                                                                <input name="audio" type="file" class="custom-file-input">
+                                                                <label class="custom-file-label">Choose audio file</label>
+                                                                <% if (post_data.audio_url && post_data.audio_url.length) { %>
+                                                                    <a href="<%= post_data.audio_url%>" class="audio-selected" target="_blank">View/Download Audio File</a>
+                                                                <% } %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-lg-2 col-form-label">Slug <span
+                                                            class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-10">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">neeleshmisra.com/blog/</span>
+                                                            </div>
+                                                            <input type="text" class="form-control" name="slug" value="<%=post_data.slug%>" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    <div class="form-group row">
+                                                        <label class="col-lg-2 col-form-label">Description
+                                                        </label>
+                                                        <div class="col-lg-10">
+                                                            <textarea name="description" class="form-control summernote" cols="30" rows="5"><%= post_data.description%></textarea>
+                                                        </div>
+                                                    </div>                                                
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    
+                                                    <div class="form-group row">
+                                                        <div class="col-lg-8 ml-auto">
+                                                            <button type="button" class="btn btn-primary" id="submit-form">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+
+    <script>
+        $(document).on('click', '#submit-form', async function() {
+
+            let hidden_elements = [];
+            $('input:hidden').each(function() {
+                if ($(this).attr('required')) {
+                    hidden_elements.push($(this));
+                    $(this).removeAttr('required');
+                }
+            });
+
+
+            const is_form_valid = $("#cms_form").valid();
+
+            for (let x of hidden_elements) {
+                $(x).attr('required', true);
+            }
+
+            let post_data_selected_correctly = true;
+
+            let selected_type = $('.select-post-type').val();
+
+            if (selected_type == 'image') {
+                if (($( "input[name='image']").val().length < 1) && ($('.image-selected').length < 1)) {
+                    alert('Please select image.');
+                    post_data_selected_correctly = false;
+                    return false;
+                }
+            } else if (selected_type == 'audio') {
+
+                console.log($( "input[name='image']").val().length);
+                console.log($('.image-selected').length);
+                
+                if (($( "input[name='image']").val().length < 1) && ($('.image-selected').length < 1)) {
+                    alert('Please select image.');
+                    post_data_selected_correctly = false;
+                    return false;
+                }
+
+                if (($( "input[name='audio']").val().length < 1) && ($('.audio-selected').length < 1)) {
+                    alert('Please select audio file.');
+                    post_data_selected_correctly = false;
+                    return false;
+                }
+            } else if (selected_type == 'video') {
+
+                if (($( "input[name='video']").val().length < 1) && ($('.video-selected').length < 1)) {
+                    alert('Please select video file.');
+                    post_data_selected_correctly = false;
+                    return false;
+                }
+
+            } else if (selected_type == 'external') {
+                if (($( "input[name='image']").val().length < 1) && ($('.image-selected').length < 1)) {
+                    alert('Please select image.');
+                    post_data_selected_correctly = false;
+                    return false;
+                }
+            }
+
+            if (is_form_valid && post_data_selected_correctly) {
+
+                let formData = new FormData(document.querySelector('#cms_form'));
+                const resp = await asyncPost('/cms/myblogs/feed/edit-post','' ,formData);
+
+                if (resp.success) {
+                    alert('Post update successful.')
+                    window.location.href = window.location.href;
+                } else {
+                    if (resp.message) {
+                        alert(resp.message);
+                    } else {
+                        alert(resp.error);
+                    }
+                }
+            }
+        });
+
+        $(document).ready(function() {
+
+            $('.select-tag').val(<%- JSON.stringify(post_data.category_id)%>).trigger('change');
+            $('.select-post-type').val('<%= post_data.type%>').trigger('change');
+
+            $(document).on('change', '.select-post-type', function() {
+
+                let selected_type = $(this).val();
+
+                $('.post-content-type').hide();
+
+                if (selected_type == 'image') {
+                   $('.show-image').show();
+                } else if (selected_type == 'audio') {
+                    $('.show-image').show();
+                    $('.show-audio').show();
+                } else if (selected_type == 'video') {
+                    $('.show-video').show();
+                } else if (selected_type == 'external') {
+                    $('.show-image').show();
+                    $('.show-external').show();
+                }
+            });
+
+        });
+
+        
+    </script>
+</body>
+
+</html>

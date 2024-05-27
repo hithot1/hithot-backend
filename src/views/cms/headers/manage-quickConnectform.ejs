@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Somany CMS </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon.ico">
+    <%-  include('../styles') -%>
+</head>
+
+<body>
+
+    
+    <%- include('../preloader') -%>
+    
+    <div id="main-wrapper">
+
+       <%- include('../nav-header') -%>
+       
+       <%- include('../header') -%>
+       
+       <%- include('../sidebar') -%>
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                <div class="row page-titles mx-0">
+                    <div class="col-sm-12 p-md-0">
+                        <div class="welcome-text d-flex">
+                            <h4>Manage Quick Connect Form</h4>
+                            <!-- <a class="btn btn-primary position-absolute right--0" href="/cms/headers/add">Add</a> -->
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- row -->
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                           
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example" class="display" style="min-width: 845px">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Enquiry Type</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>Query</th>
+                                                <th>Pincode</th>
+                                                <th>OTP</th>
+                                                <th>Date</th>
+                                                <!-- <th>Action</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <% if (data && data.length) { 
+                                                    for (let quickConnect of data) {    
+                                            %>
+                                            <tr>
+                                                
+                                                <td><%=quickConnect.type%></td>
+                                                <td><%=quickConnect.enquiryType%></td>
+                                                <td><%=quickConnect.name%></td>
+                                                <td><%=quickConnect.email%></td>
+                                                <td><%=quickConnect.phone%></td>
+                                                <td><%=quickConnect.query%></td>
+                                                <td><%=quickConnect.pincode%></td>
+                                                <td><%=quickConnect.otp%></td>
+                                                
+                                                <td><%= moment(quickConnect.updated_at).format('DD/MM/YYYY') %></td>
+                                                <!-- <td>
+                                                    <a class="btn btn-primary" href="/cms/headers/edit/<%=quickConnect._id%>">Edit</a>
+                                                    <button class="btn btn-danger remove_quickConnect" data-id="<%=quickConnect._id%>">Delete</button>
+                                                </td> -->
+                                            </tr>
+
+                                            <% } } else { %>
+                                                <tr>
+                                                    <td colspan="5">
+                                                        No Quick Connect Added.
+                                                    </td>
+                                                </tr>
+                                            <% } %>
+                                          
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Enquiry Type</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Mobile</th>
+                                                <th>Query</th>
+                                                <th>Pincode</th>
+                                                <th>OTP</th>
+                                                <th>Date</th>
+                                                <!-- <th>Action</th> -->
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+
+        <%- include("../footer") -%>
+        
+    </div>
+    <%- include("../scripts") -%>
+    
+    <script>
+        $(document).on('click', '.remove_quickConnect', async function() {
+
+            let id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!'})
+            .then(async (result) => {
+                if (result.isConfirmed) {
+
+                    const resp = await asyncDelete('/cms/quickConnectform/remove', '/'+id);
+
+                    if (resp && resp.success) {
+                        Swal.fire({icon: "success", text: "Quick Connect deleted successfully"});
+                        $(this).parents('tr').remove();
+                        // window.location.href = window.location.href;
+                    } else {
+                        if (resp.message) {
+                            alert(resp.message);
+                        } else {
+                            alert(resp.error);
+                        }
+                    }
+                }
+            });
+
+        
+        });
+    </script>
+
+</body>
+
+</html>
